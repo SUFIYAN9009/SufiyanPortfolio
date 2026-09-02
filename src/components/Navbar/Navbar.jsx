@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
@@ -15,8 +14,19 @@ const navItems = [
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const closeMenu = () => {
+  const closeMenu = (href) => {
     setMenuOpen(false);
+
+    setTimeout(() => {
+      const section = document.querySelector(href);
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -35,7 +45,7 @@ function Navbar() {
         <a
           href="#home"
           className="navbar-logo"
-          onClick={closeMenu}
+          onClick={() => closeMenu("#home")}
         >
           SUFIYAN<span>.</span>
         </a>
@@ -47,7 +57,7 @@ function Navbar() {
             <a
               key={item.name}
               href={item.href}
-              onClick={closeMenu}
+              onClick={() => closeMenu(item.href)}
             >
               {item.name}
             </a>
@@ -69,7 +79,7 @@ function Navbar() {
           <a
             href="#contact"
             className="navbar-cta"
-            onClick={closeMenu}
+            onClick={() => closeMenu("#contact")}
           >
             LET'S TALK
             <ArrowUpRight size={15} />
@@ -125,7 +135,7 @@ function Navbar() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                onClick={closeMenu}
+                onClick={() => closeMenu(item.href)}
                 initial={{
                   opacity: 0,
                   x: -20,
@@ -146,7 +156,7 @@ function Navbar() {
             {/* MOBILE CTA */}
             <motion.a
               href="#contact"
-              onClick={closeMenu}
+              onClick={() => closeMenu("#contact")}
               className="mobile-cta"
               initial={{
                 opacity: 0,
@@ -172,4 +182,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
