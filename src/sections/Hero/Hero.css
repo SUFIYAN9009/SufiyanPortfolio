@@ -1,0 +1,562 @@
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #050505;
+  color: #f5f1e8;
+}
+
+
+/* =====================================================
+   BACKGROUND GRID
+===================================================== */
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(200, 169, 107, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(200, 169, 107, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 80px 80px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    rgba(0, 0, 0, 0.5) 65%,
+    transparent 100%
+  );
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   GOLD GLOW
+===================================================== */
+
+.hero-glow {
+  position: absolute;
+
+  width: 650px;
+  height: 650px;
+
+  top: -280px;
+  right: -180px;
+
+  background: radial-gradient(
+    circle,
+    rgba(200, 169, 107, 0.12) 0%,
+    rgba(200, 169, 107, 0.035) 35%,
+    transparent 70%
+  );
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+
+  width: min(1240px, calc(100% - 70px));
+
+  margin: 0 auto;
+
+  padding-top: 100px;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.hero-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 32px;
+
+  color: #77736c;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.18em;
+}
+
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #c8a96b;
+
+  box-shadow:
+    0 0 0 5px rgba(200, 169, 107, 0.08),
+    0 0 15px rgba(200, 169, 107, 0.5);
+
+  animation: statusPulse 2s infinite;
+}
+
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 5px rgba(200, 169, 107, 0.08),
+      0 0 15px rgba(200, 169, 107, 0.5);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 9px rgba(200, 169, 107, 0.02),
+      0 0 22px rgba(200, 169, 107, 0.7);
+  }
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.hero-intro {
+  margin: 0 0 18px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 0.18em;
+
+  color: #77736c;
+}
+
+.hero-intro span {
+  color: #c8a96b;
+}
+
+
+/* =====================================================
+   MAIN HEADING
+===================================================== */
+
+.hero-content h1 {
+  margin: 0;
+
+  font-size: clamp(64px, 9vw, 128px);
+
+  line-height: 0.88;
+
+  font-weight: 800;
+
+  letter-spacing: -0.055em;
+
+  text-transform: uppercase;
+}
+
+.hero-content h1 span {
+  color: transparent;
+
+  -webkit-text-stroke: 1px rgba(245, 241, 232, 0.65);
+
+  text-shadow:
+    0 0 40px rgba(200, 169, 107, 0.04);
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.hero-description {
+  max-width: 560px;
+
+  margin-top: 38px;
+
+  color: #77736c;
+
+  font-size: 16px;
+  line-height: 1.8;
+
+  font-weight: 400;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 38px;
+}
+
+
+/* Primary */
+
+.hero-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  min-height: 50px;
+
+  padding: 0 24px;
+
+  background: #c8a96b;
+  color: #050505;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hero-primary-btn:hover {
+  transform: translateY(-3px);
+
+  background: #dfc38b;
+
+  box-shadow:
+    0 12px 35px rgba(200, 169, 107, 0.18);
+}
+
+
+/* Secondary */
+
+.hero-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 50px;
+
+  padding: 0 24px;
+
+  border: 1px solid rgba(200, 169, 107, 0.25);
+
+  color: #f5f1e8;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+
+  transition:
+    border-color 0.3s ease,
+    color 0.3s ease,
+    background 0.3s ease;
+}
+
+.hero-secondary-btn:hover {
+  border-color: #c8a96b;
+  color: #c8a96b;
+  background: rgba(200, 169, 107, 0.04);
+}
+
+
+/* =====================================================
+   TECHNOLOGIES
+===================================================== */
+
+.hero-technologies {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  margin-top: 65px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid rgba(245, 241, 232, 0.08);
+
+  max-width: 850px;
+}
+
+.tech-label {
+  flex-shrink: 0;
+
+  color: #4f4c47;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+}
+
+.tech-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+}
+
+.tech-list span {
+  position: relative;
+
+  color: #77736c;
+
+  font-size: 11px;
+
+  letter-spacing: 0.06em;
+
+  transition: color 0.25s ease;
+}
+
+.tech-list span:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #c8a96b;
+
+  right: -13px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  opacity: 0.5;
+}
+
+.tech-list span:hover {
+  color: #c8a96b;
+}
+
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+.hero-scroll {
+  position: absolute;
+
+  bottom: 38px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #4f4c47;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+
+  transition: color 0.3s ease;
+}
+
+.hero-scroll:hover {
+  color: #c8a96b;
+}
+
+
+/* =====================================================
+   NUMBER
+===================================================== */
+
+.hero-number {
+  position: absolute;
+
+  right: 35px;
+  bottom: 38px;
+
+  color: #292723;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 950px) {
+
+  .hero-container {
+    width: min(100% - 50px, 850px);
+  }
+
+  .hero-content h1 {
+    font-size: clamp(58px, 11vw, 95px);
+  }
+
+  .hero-description {
+    max-width: 500px;
+  }
+
+  .hero-technologies {
+    margin-top: 50px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .hero {
+    min-height: 100svh;
+  }
+
+  .hero-container {
+    width: calc(100% - 36px);
+    padding-top: 90px;
+  }
+
+  .hero-status {
+    margin-bottom: 26px;
+
+    font-size: 8px;
+  }
+
+  .hero-intro {
+    font-size: 9px;
+    margin-bottom: 15px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(48px, 14vw, 72px);
+    line-height: 0.9;
+  }
+
+  .hero-description {
+    margin-top: 28px;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    margin-top: 30px;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
+
+    max-width: 280px;
+  }
+
+  .hero-primary-btn,
+  .hero-secondary-btn {
+    width: 100%;
+  }
+
+  .hero-technologies {
+    margin-top: 42px;
+
+    display: block;
+  }
+
+  .tech-label {
+    display: block;
+
+    margin-bottom: 16px;
+  }
+
+  .tech-list {
+    gap: 10px 20px;
+  }
+
+  .tech-list span {
+    font-size: 10px;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  .hero-number {
+    right: 18px;
+    bottom: 22px;
+  }
+
+  .hero-glow {
+    width: 450px;
+    height: 450px;
+
+    top: -180px;
+    right: -220px;
+  }
+
+  .hero-grid {
+    background-size: 55px 55px;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 420px) {
+
+  .hero-container {
+    width: calc(100% - 28px);
+  }
+
+  .hero-content h1 {
+    font-size: 44px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .hero-technologies {
+    margin-top: 35px;
+  }
+
+  .tech-list span {
+    font-size: 9px;
+  }
+}

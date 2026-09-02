@@ -1,0 +1,495 @@
+
+/* =========================================================
+   SUFIYAN — ELITE DARK NAVBAR
+========================================================= */
+
+.navbar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 82px;
+
+  z-index: 1000;
+
+  background: rgba(5, 5, 5, 0.78);
+
+  border-bottom: 1px solid rgba(200, 169, 107, 0.12);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.navbar-container {
+  width: min(
+    1240px,
+    calc(100% - 70px)
+  );
+
+  height: 100%;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.navbar-logo {
+  color: #f5f1e8;
+
+  text-decoration: none;
+
+  font-size: 21px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.navbar-logo span {
+  color: #c8a96b;
+
+  font-size: 27px;
+
+  text-shadow:
+    0 0 15px rgba(200, 169, 107, 0.5);
+}
+
+.navbar-logo:hover {
+  color: #e2c98a;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
+
+.desktop-nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 36px;
+
+  margin-left: auto;
+
+  margin-right: 45px;
+}
+
+.desktop-nav a {
+  position: relative;
+
+  color: #77736c;
+
+  text-decoration: none;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* GOLD UNDERLINE */
+
+.desktop-nav a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: -10px;
+
+  width: 0;
+
+  height: 1px;
+
+  background: #c8a96b;
+
+  transform: translateX(-50%);
+
+  transition:
+    width 0.3s ease;
+}
+
+.desktop-nav a:hover {
+  color: #f5f1e8;
+
+  transform: translateY(-1px);
+}
+
+.desktop-nav a:hover::after {
+  width: 100%;
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
+
+.navbar-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+
+/* =========================================================
+   AVAILABILITY
+========================================================= */
+
+.availability {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #68645e;
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  white-space: nowrap;
+}
+
+.availability-dot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #c8a96b;
+
+  box-shadow:
+    0 0 12px rgba(200, 169, 107, 0.8);
+
+  animation:
+    availabilityPulse 2s ease-in-out infinite;
+}
+
+@keyframes availabilityPulse {
+
+  0%,
+  100% {
+    opacity: 0.35;
+
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.15);
+  }
+}
+
+
+/* =========================================================
+   LET'S TALK BUTTON
+========================================================= */
+
+.navbar-cta {
+  min-height: 40px;
+
+  padding: 0 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 13px;
+
+  color: #f5f1e8;
+
+  text-decoration: none;
+
+  border: 1px solid rgba(
+    200,
+    169,
+    107,
+    0.22
+  );
+
+  background: rgba(
+    200,
+    169,
+    107,
+    0.04
+  );
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+
+  transition:
+    color 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.navbar-cta:hover {
+  color: #e2c98a;
+
+  border-color: rgba(
+    200,
+    169,
+    107,
+    0.55
+  );
+
+  background: rgba(
+    200,
+    169,
+    107,
+    0.09
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 35px rgba(
+      0,
+      0,
+      0,
+      0.35
+    );
+}
+
+
+/* =========================================================
+   MOBILE BUTTON
+========================================================= */
+
+.mobile-menu-button {
+  display: none;
+
+  width: 42px;
+  height: 42px;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #f5f1e8;
+
+  background: rgba(
+    200,
+    169,
+    107,
+    0.05
+  );
+
+  border: 1px solid rgba(
+    200,
+    169,
+    107,
+    0.2
+  );
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.mobile-menu-button:hover {
+  color: #e2c98a;
+
+  border-color: rgba(
+    200,
+    169,
+    107,
+    0.5
+  );
+
+  background: rgba(
+    200,
+    169,
+    107,
+    0.08
+  );
+}
+
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+.mobile-nav {
+  display: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .desktop-nav {
+    gap: 22px;
+
+    margin-right: 25px;
+  }
+
+  .availability {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    height: 72px;
+  }
+
+  .navbar-container {
+    width: calc(100% - 30px);
+  }
+
+  .navbar-logo {
+    font-size: 19px;
+  }
+
+  .desktop-nav,
+  .navbar-cta {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+
+    width: calc(100% - 30px);
+
+    margin: 10px auto 0;
+
+    padding: 10px;
+
+    background: rgba(
+      10,
+      10,
+      10,
+      0.98
+    );
+
+    border: 1px solid rgba(
+      200,
+      169,
+      107,
+      0.15
+    );
+
+    box-shadow:
+      0 25px 70px rgba(
+        0,
+        0,
+        0,
+        0.7
+      );
+
+    overflow: hidden;
+  }
+
+  .mobile-nav a {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 17px 10px;
+
+    color: #aaa59c;
+
+    border-bottom: 1px solid rgba(
+      255,
+      255,
+      255,
+      0.06
+    );
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.12em;
+
+    transition:
+      color 0.3s ease,
+      padding-left 0.3s ease;
+  }
+
+  .mobile-nav a:hover {
+    color: #e2c98a;
+
+    padding-left: 15px;
+  }
+
+  .mobile-nav .mobile-cta {
+    color: #c8a96b;
+
+    border-bottom: none;
+  }
+}
+

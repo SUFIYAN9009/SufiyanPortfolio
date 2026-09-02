@@ -1,0 +1,354 @@
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about {
+  position: relative;
+
+  width: 100%;
+
+  padding: 150px 0;
+
+  background: #050505;
+
+  color: #f5f1e8;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.about-container {
+  width: min(1240px, calc(100% - 70px));
+
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  margin-bottom: 90px;
+}
+
+.about-label,
+.about-year {
+  flex-shrink: 0;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+}
+
+.about-label {
+  color: #c8a96b;
+}
+
+.about-year {
+  color: #4f4c47;
+}
+
+.about-line {
+  width: 100%;
+  height: 1px;
+
+  background: rgba(245, 241, 232, 0.08);
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.about-main {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 100px;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.about-title h2 {
+  margin: 0;
+
+  font-size: clamp(55px, 7vw, 100px);
+
+  line-height: 0.9;
+
+  letter-spacing: -0.055em;
+
+  font-weight: 800;
+}
+
+.about-title h2 span {
+  color: transparent;
+
+  -webkit-text-stroke: 1px rgba(245, 241, 232, 0.5);
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.about-content {
+  max-width: 570px;
+
+  padding-top: 8px;
+}
+
+.about-content p {
+  margin: 0 0 25px;
+
+  color: #68645e;
+
+  font-size: 15px;
+
+  line-height: 1.85;
+}
+
+.about-content .about-lead {
+  color: #d5d0c7;
+
+  font-size: 19px;
+
+  line-height: 1.65;
+
+  margin-bottom: 30px;
+}
+
+
+/* =====================================================
+   LINK
+===================================================== */
+
+.about-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 15px;
+
+  padding-bottom: 9px;
+
+  border-bottom: 1px solid rgba(200, 169, 107, 0.4);
+
+  color: #c8a96b;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.13em;
+
+  transition:
+    gap 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.about-link:hover {
+  gap: 18px;
+
+  border-color: #c8a96b;
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.about-stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  margin-top: 110px;
+
+  border-top: 1px solid rgba(245, 241, 232, 0.08);
+  border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+}
+
+.about-stat {
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  min-height: 105px;
+
+  padding: 0 30px;
+
+  border-right: 1px solid rgba(245, 241, 232, 0.08);
+}
+
+.about-stat:first-child {
+  padding-left: 0;
+}
+
+.about-stat:last-child {
+  border-right: none;
+}
+
+.stat-number {
+  color: #c8a96b;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+}
+
+.stat-label {
+  color: #77736c;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 950px) {
+
+  .about {
+    padding: 120px 0;
+  }
+
+  .about-container {
+    width: min(100% - 50px, 850px);
+  }
+
+  .about-main {
+    gap: 60px;
+  }
+
+  .about-title h2 {
+    font-size: clamp(52px, 8vw, 75px);
+  }
+
+  .about-content .about-lead {
+    font-size: 17px;
+  }
+
+  .about-stats {
+    margin-top: 80px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .about {
+    padding: 100px 0;
+  }
+
+  .about-container {
+    width: calc(100% - 36px);
+  }
+
+  .about-header {
+    gap: 15px;
+
+    margin-bottom: 60px;
+  }
+
+  .about-label,
+  .about-year {
+    font-size: 8px;
+  }
+
+  .about-main {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+  }
+
+  .about-title h2 {
+    font-size: clamp(48px, 15vw, 70px);
+  }
+
+  .about-content {
+    padding-top: 0;
+  }
+
+  .about-content .about-lead {
+    font-size: 17px;
+  }
+
+  .about-content p {
+    font-size: 14px;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+
+    margin-top: 70px;
+  }
+
+  .about-stat,
+  .about-stat:first-child {
+    min-height: 75px;
+
+    padding: 0;
+
+    border-right: none;
+
+    border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+  }
+
+  .about-stat:last-child {
+    border-bottom: none;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 420px) {
+
+  .about {
+    padding: 85px 0;
+  }
+
+  .about-container {
+    width: calc(100% - 28px);
+  }
+
+  .about-content .about-lead {
+    font-size: 16px;
+  }
+
+  .about-content p {
+    font-size: 13px;
+  }
+}
