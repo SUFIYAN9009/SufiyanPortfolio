@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
 import "./Work.css";
 
 const projects = [
@@ -87,8 +86,9 @@ function Work() {
               </div>
 
               {/* Project Visual */}
-              <div className={`project-visual project-visual-${project.type}`}>
-
+              <div
+                className={`project-visual project-visual-${project.type}`}
+              >
                 <div className="visual-grid"></div>
 
                 <div className="visual-content">
@@ -134,29 +134,6 @@ function Work() {
                   ))}
                 </div>
 
-                {/* Links */}
-                <div className="project-links">
-
-                  <a
-                    href="https://github.com/SUFIYAN9009"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link"
-                  >
-                    VIEW CODE
-                    <ArrowUpRight size={16} />
-                  </a>
-
-                  <a
-                    href="#contact"
-                    className="project-link project-link-muted"
-                  >
-                    PROJECT DETAILS
-                    <ExternalLink size={14} />
-                  </a>
-
-                </div>
-
               </div>
 
             </motion.article>
@@ -176,7 +153,7 @@ function Work() {
 
           <a href="#contact">
             START A PROJECT
-            <ArrowUpRight size={16} />
+            <span>↗</span>
           </a>
         </motion.div>
 
@@ -186,3 +163,4 @@ function Work() {
 }
 
 export default Work;
+
