@@ -19,9 +19,13 @@
 
   transform: translate(-50%, -50%);
 
+  opacity: 0;
+
   box-shadow:
     0 0 8px rgba(200, 169, 107, 0.8),
     0 0 20px rgba(200, 169, 107, 0.3);
+
+  transition: opacity 0.2s ease;
 }
 
 
@@ -50,18 +54,31 @@
 
   transform: translate(-50%, -50%);
 
+  opacity: 0;
+
   transition:
     width 0.25s ease,
     height 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    opacity 0.2s ease;
 }
 
 
 /* =========================================================
-   DESKTOP ONLY
+   VISIBLE
+========================================================= */
+
+.cursor-visible {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   DESKTOP
 ========================================================= */
 
 @media (pointer: fine) {
+
   html,
   body,
   a,
@@ -76,9 +93,22 @@
 ========================================================= */
 
 @media (pointer: coarse) {
-  .cursor-dot,
+
+  .cursor-dot {
+    width: 7px;
+    height: 7px;
+  }
+
   .cursor-follower {
-    display: none;
+    width: 34px;
+    height: 34px;
+
+    border-color: rgba(
+      200,
+      169,
+      107,
+      0.55
+    );
   }
 }
 

@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import "./About.css";
@@ -44,6 +45,20 @@ function About() {
               <br />
               <span>PURPOSE.</span>
             </h2>
+          </motion.div>
+
+          {/* Profile Photo */}
+          <motion.div
+            className="about-photo"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8 }}
+          >
+            <img
+              src="/images/profile.jpg"
+              alt="Sufiyan Ali - Full Stack Developer"
+            />
           </motion.div>
 
           {/* Right */}
@@ -102,3 +117,4 @@ function About() {
 }
 
 export default About;
+
