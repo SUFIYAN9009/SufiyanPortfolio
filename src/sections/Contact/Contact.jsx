@@ -19,7 +19,7 @@ function Contact() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="contact-label">04 / CONTACT</span>
+          <span className="contact-label">CONTACT</span>
 
           <span className="contact-status">
             <span></span>

@@ -49,7 +49,7 @@ function Skills() {
           transition={{ duration: 0.7 }}
         >
           <div>
-            <span className="skills-label">02 / EXPERTISE</span>
+            <span className="skills-label">EXPERTISE</span>
 
             <h2>
               MY <span>STACK.</span>

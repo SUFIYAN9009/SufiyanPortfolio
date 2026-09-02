@@ -22,7 +22,7 @@ function About() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="about-label">01 / ABOUT ME</span>
+          <span className="about-label">ABOUT ME</span>
 
           <div className="about-line"></div>
 

@@ -50,7 +50,7 @@ function Work() {
           transition={{ duration: 0.7 }}
         >
           <div>
-            <span className="work-label">03 / SELECTED WORK</span>
+            <span className="work-label">SELECTED WORK</span>
 
             <h2>
               BUILT TO
