@@ -4,11 +4,10 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import "./Navbar.css";
 
 const navItems = [
-  { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
-  { name: "Work", href: "#work" },
   { name: "Contact", href: "#contact" },
+  { name: "Experience", href: "#experience" }
 ];
 
 function Navbar() {
@@ -32,11 +31,11 @@ function Navbar() {
   return (
     <motion.header
       className="navbar"
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ y: -30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.5,
+        ease: "easeOut",
       }}
     >
       <div className="navbar-container">
@@ -50,8 +49,7 @@ function Navbar() {
           SUFIYAN<span>.</span>
         </a>
 
-
-        {/* DESKTOP NAVIGATION */}
+        {/* DESKTOP NAV */}
         <nav className="desktop-nav">
           {navItems.map((item) => (
             <a
@@ -64,16 +62,14 @@ function Navbar() {
           ))}
         </nav>
 
-
         {/* RIGHT SIDE */}
         <div className="navbar-right">
 
-          {/* AVAILABLE STATUS */}
+          {/* AVAILABLE */}
           <div className="availability">
             <span className="availability-dot"></span>
-            AVAILABLE FOR WORK
+            Available for work
           </div>
-
 
           {/* CTA */}
           <a
@@ -81,99 +77,64 @@ function Navbar() {
             className="navbar-cta"
             onClick={() => closeMenu("#contact")}
           >
-            LET'S TALK
+            Let's Talk
             <ArrowUpRight size={15} />
           </a>
 
-
-          {/* MOBILE MENU BUTTON */}
+          {/* MOBILE MENU */}
           <button
             type="button"
             className="mobile-menu-button"
             onClick={() => setMenuOpen((prev) => !prev)}
-            aria-label={
-              menuOpen
-                ? "Close navigation menu"
-                : "Open navigation menu"
-            }
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
-            {menuOpen ? (
-              <X size={20} />
-            ) : (
-              <Menu size={20} />
-            )}
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
         </div>
       </div>
 
-
-      {/* MOBILE NAVIGATION */}
+      {/* MOBILE NAV */}
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
             className="mobile-nav"
             initial={{
               opacity: 0,
-              height: 0,
+              y: -8,
             }}
             animate={{
               opacity: 1,
-              height: "auto",
+              y: 0,
             }}
             exit={{
               opacity: 0,
-              height: 0,
+              y: -8,
             }}
             transition={{
-              duration: 0.25,
+              duration: 0.2,
             }}
           >
-
-            {navItems.map((item, index) => (
-              <motion.a
+            {navItems.map((item) => (
+              <a
                 key={item.name}
                 href={item.href}
                 onClick={() => closeMenu(item.href)}
-                initial={{
-                  opacity: 0,
-                  x: -20,
-                }}
-                animate={{
-                  opacity: 1,
-                  x: 0,
-                }}
-                transition={{
-                  delay: index * 0.07,
-                }}
               >
                 {item.name}
-              </motion.a>
+                <ArrowUpRight size={15} />
+              </a>
             ))}
 
-
-            {/* MOBILE CTA */}
-            <motion.a
+            <a
               href="#contact"
-              onClick={() => closeMenu("#contact")}
               className="mobile-cta"
-              initial={{
-                opacity: 0,
-                x: -20,
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-              }}
-              transition={{
-                delay: navItems.length * 0.07,
-              }}
+              onClick={() => closeMenu("#contact")}
             >
-              LET'S TALK
+              Let's Talk
               <ArrowUpRight size={17} />
-            </motion.a>
-
+            </a>
           </motion.nav>
         )}
       </AnimatePresence>

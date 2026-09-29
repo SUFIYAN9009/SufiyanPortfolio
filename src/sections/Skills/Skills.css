@@ -7,7 +7,7 @@
 
   width: 100%;
 
-  padding: 150px 0;
+  padding: 140px 0;
 
   background: #080808;
 
@@ -22,7 +22,7 @@
 ===================================================== */
 
 .skills-container {
-  width: min(1240px, calc(100% - 70px));
+  width: min(1200px, calc(100% - 50px));
 
   margin: 0 auto;
 }
@@ -41,13 +41,13 @@
 
   gap: 60px;
 
-  margin-bottom: 75px;
+  margin-bottom: 70px;
 }
 
 .skills-label {
   display: block;
 
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 
   color: #c8a96b;
 
@@ -55,29 +55,29 @@
 
   font-weight: 700;
 
-  letter-spacing: 0.16em;
+  letter-spacing: 0.15em;
 }
 
 .skills-header h2 {
   margin: 0;
 
-  font-size: clamp(55px, 7vw, 96px);
+  font-size: clamp(52px, 6vw, 82px);
 
-  line-height: 0.9;
+  line-height: 0.92;
 
   letter-spacing: -0.055em;
 
   font-weight: 800;
+
+  text-transform: uppercase;
 }
 
 .skills-header h2 span {
-  color: transparent;
-
-  -webkit-text-stroke: 1px rgba(245, 241, 232, 0.5);
+  color: #c8a96b;
 }
 
 .skills-header > p {
-  max-width: 330px;
+  max-width: 350px;
 
   margin: 0;
 
@@ -113,16 +113,16 @@
 .skill-card {
   position: relative;
 
-  min-height: 360px;
+  min-height: 310px;
 
-  padding: 35px;
+  padding: 32px;
 
   background: #080808;
 
   overflow: hidden;
 
   transition:
-    background 0.35s ease;
+    background 0.3s ease;
 }
 
 .skill-card::before {
@@ -138,7 +138,7 @@
 
   background: #c8a96b;
 
-  transition: width 0.45s ease;
+  transition: width 0.4s ease;
 }
 
 .skill-card:hover {
@@ -151,7 +151,7 @@
 
 
 /* =====================================================
-   CARD TOP
+   TOP
 ===================================================== */
 
 .skill-card-top {
@@ -175,7 +175,7 @@
 .skill-icon {
   color: #c8a96b;
 
-  opacity: 0.75;
+  opacity: 0.7;
 
   transition:
     transform 0.3s ease,
@@ -190,17 +190,35 @@
 
 
 /* =====================================================
-   CARD TITLE
+   CONTENT
 ===================================================== */
 
-.skill-card h3 {
-  margin: 70px 0 30px;
+.skill-card-content {
+  margin-top: 55px;
+}
 
-  font-size: 25px;
+.skill-card h3 {
+  margin: 0 0 12px;
+
+  color: #f5f1e8;
+
+  font-size: 23px;
 
   font-weight: 700;
 
   letter-spacing: -0.02em;
+}
+
+.skill-card-content p {
+  max-width: 360px;
+
+  margin: 0 0 25px;
+
+  color: #5f5b55;
+
+  font-size: 12px;
+
+  line-height: 1.7;
 }
 
 
@@ -213,11 +231,11 @@
 
   flex-wrap: wrap;
 
-  gap: 10px;
+  gap: 8px;
 }
 
 .skill-list span {
-  padding: 9px 13px;
+  padding: 8px 11px;
 
   border: 1px solid rgba(245, 241, 232, 0.08);
 
@@ -227,7 +245,7 @@
 
   font-weight: 600;
 
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
 
   transition:
     color 0.25s ease,
@@ -245,48 +263,10 @@
 
 
 /* =====================================================
-   CARD BOTTOM
-===================================================== */
-
-.skill-card-bottom {
-  position: absolute;
-
-  left: 35px;
-  right: 35px;
-  bottom: 30px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  padding-top: 17px;
-
-  border-top: 1px solid rgba(245, 241, 232, 0.06);
-
-  color: #4f4c47;
-
-  font-size: 8px;
-
-  font-weight: 700;
-
-  letter-spacing: 0.15em;
-}
-
-.skill-card-bottom svg {
-  color: #c8a96b;
-
-  opacity: 0.5;
-}
-
-
-/* =====================================================
    TABLET
 ===================================================== */
 
 @media (max-width: 950px) {
-
   .skills {
     padding: 120px 0;
   }
@@ -300,15 +280,15 @@
 
     flex-direction: column;
 
-    gap: 25px;
+    gap: 22px;
   }
 
   .skills-header > p {
-    max-width: 500px;
+    max-width: 520px;
   }
 
   .skill-card {
-    min-height: 340px;
+    min-height: 300px;
   }
 }
 
@@ -318,7 +298,6 @@
 ===================================================== */
 
 @media (max-width: 700px) {
-
   .skills {
     padding: 100px 0;
   }
@@ -332,11 +311,13 @@
   }
 
   .skills-header h2 {
-    font-size: clamp(48px, 15vw, 70px);
+    font-size: clamp(46px, 14vw, 68px);
   }
 
   .skills-header > p {
     font-size: 13px;
+
+    line-height: 1.75;
   }
 
   .skills-grid {
@@ -344,21 +325,17 @@
   }
 
   .skill-card {
-    min-height: 330px;
+    min-height: 285px;
 
     padding: 28px;
   }
 
-  .skill-card h3 {
-    margin-top: 60px;
-
-    font-size: 22px;
+  .skill-card-content {
+    margin-top: 48px;
   }
 
-  .skill-card-bottom {
-    left: 28px;
-    right: 28px;
-    bottom: 25px;
+  .skill-card h3 {
+    font-size: 21px;
   }
 }
 
@@ -368,18 +345,23 @@
 ===================================================== */
 
 @media (max-width: 420px) {
-
   .skills-container {
     width: calc(100% - 28px);
   }
 
   .skill-card {
-    min-height: 320px;
+    min-height: 275px;
+
+    padding: 25px;
+  }
+
+  .skill-card-content {
+    margin-top: 42px;
   }
 
   .skill-list span {
-    font-size: 9px;
+    padding: 7px 9px;
 
-    padding: 8px 10px;
+    font-size: 9px;
   }
 }

@@ -1,13 +1,6 @@
-
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import "./About.css";
-
-const stats = [
-  { number: "01", label: "Developer" },
-  { number: "02", label: "Full Stack" },
-  { number: "03", label: "Problem Solver" },
-];
 
 function About() {
   return (
@@ -17,99 +10,83 @@ function About() {
         {/* Section Header */}
         <motion.div
           className="about-header"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
         >
           <span className="about-label">ABOUT ME</span>
 
           <div className="about-line"></div>
 
-          <span className="about-year">2026</span>
         </motion.div>
 
         {/* Main Content */}
         <div className="about-main">
 
-          {/* Left */}
+          {/* Title */}
           <motion.div
             className="about-title"
-            initial={{ opacity: 0, x: -35 }}
+            initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
           >
+            <p className="about-kicker">WHO I AM</p>
+
             <h2>
-              CODE WITH
+              I BUILD
               <br />
-              <span>PURPOSE.</span>
+              <span>DIGITAL PRODUCTS.</span>
             </h2>
           </motion.div>
 
           {/* Profile Photo */}
           <motion.div
             className="about-photo"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
           >
             <img
-              src="/images/profile.jpg"
+              src="/images/profile/profile.jpg"
               alt="Sufiyan Ali - Full Stack Developer"
             />
           </motion.div>
 
-          {/* Right */}
+          {/* Content */}
           <motion.div
             className="about-content"
-            initial={{ opacity: 0, x: 35 }}
+            initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
           >
             <p className="about-lead">
-              I'm a Full Stack Developer focused on building
-              modern web applications that are fast, scalable,
-              and easy to use.
+              I'm Sufiyan, a Full Stack Developer who builds
+              modern web applications from idea to launch.
             </p>
 
             <p>
-              I work across the frontend and backend, turning
-              ideas into complete digital products. My approach
-              combines clean architecture, thoughtful user
-              experiences, and maintainable code.
+              I work with Python, Django, React and JavaScript
+              to create responsive interfaces, reliable backends
+              and complete web experiences.
             </p>
 
             <p>
-              From designing responsive interfaces to building
-              powerful APIs and database-driven systems, I enjoy
-              solving real-world problems through technology.
+              I care about writing clean code and building
+              products that are simple to understand, easy to use
+              and useful in the real world.
             </p>
 
             <a href="#contact" className="about-link">
-              LET'S BUILD SOMETHING
-              <ArrowUpRight size={17} />
+              LET'S WORK TOGETHER
+              <ArrowUpRight size={16} />
             </a>
           </motion.div>
-        </div>
 
-        {/* Stats */}
-        <motion.div
-          className="about-stats"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-        >
-          {stats.map((stat) => (
-            <div className="about-stat" key={stat.number}>
-              <span className="stat-number">{stat.number}</span>
-              <span className="stat-label">{stat.label}</span>
-            </div>
-          ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>
@@ -117,4 +94,3 @@ function About() {
 }
 
 export default About;
-

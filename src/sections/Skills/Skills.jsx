@@ -4,7 +4,6 @@ import {
   Server,
   Database,
   Wrench,
-  ArrowUpRight,
 } from "lucide-react";
 import "./Skills.css";
 
@@ -13,25 +12,53 @@ const skillGroups = [
     number: "01",
     title: "FRONTEND",
     icon: Code2,
-    skills: ["React.js", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
+    description:
+      "Building responsive and user-friendly interfaces.",
+    skills: [
+      "React.js",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+    ],
   },
   {
     number: "02",
     title: "BACKEND",
     icon: Server,
-    skills: ["Python", "Django", "REST API", "Django REST Framework"],
+    description:
+      "Developing reliable server-side applications and APIs.",
+    skills: [
+      "Python",
+      "Django",
+      "REST API",
+      "Django REST Framework",
+    ],
   },
   {
     number: "03",
     title: "DATABASE",
     icon: Database,
-    skills: ["MySQL", "SQLite", "PostgreSQL"],
+    description:
+      "Working with structured data and application databases.",
+    skills: [
+      "MySQL",
+      "SQLite",
+      "PostgreSQL",
+    ],
   },
   {
     number: "04",
     title: "TOOLS",
     icon: Wrench,
-    skills: ["Git", "GitHub", "VS Code", "API Integration"],
+    description:
+      "Tools I use to build, manage and ship projects.",
+    skills: [
+      "Git",
+      "GitHub",
+      "VS Code",
+      "API Integration",
+    ],
   },
 ];
 
@@ -43,22 +70,23 @@ function Skills() {
         {/* Header */}
         <motion.div
           className="skills-header"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
         >
           <div>
-            <span className="skills-label">EXPERTISE</span>
+            <span className="skills-label">WHAT I WORK WITH</span>
 
             <h2>
-              MY <span>STACK.</span>
+              MY <span>SKILLS.</span>
             </h2>
           </div>
 
           <p>
-            Technologies and tools I use to transform
-            ideas into reliable digital products.
+            A practical stack I use to build complete,
+            responsive web applications from frontend
+            to backend.
           </p>
         </motion.div>
 
@@ -68,18 +96,18 @@ function Skills() {
             const Icon = group.icon;
 
             return (
-              <motion.div
+              <motion.article
                 className="skill-card"
                 key={group.title}
-                initial={{ opacity: 0, y: 35 }}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
+                  duration: 0.55,
+                  delay: index * 0.08,
                 }}
               >
-                {/* Card Top */}
+                {/* Top */}
                 <div className="skill-card-top">
                   <span className="skill-number">
                     {group.number}
@@ -87,27 +115,24 @@ function Skills() {
 
                   <Icon
                     className="skill-icon"
-                    size={22}
+                    size={21}
                     strokeWidth={1.5}
                   />
                 </div>
 
-                {/* Title */}
-                <h3>{group.title}</h3>
+                {/* Content */}
+                <div className="skill-card-content">
+                  <h3>{group.title}</h3>
 
-                {/* Skills */}
-                <div className="skill-list">
-                  {group.skills.map((skill) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </div>
+                  <p>{group.description}</p>
 
-                {/* Bottom */}
-                <div className="skill-card-bottom">
-                  <span>TECHNOLOGY</span>
-                  <ArrowUpRight size={15} />
+                  <div className="skill-list">
+                    {group.skills.map((skill) => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
+              </motion.article>
             );
           })}
         </div>

@@ -19,7 +19,9 @@ function Contact() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="contact-label">CONTACT</span>
+          <span className="contact-label">
+            CONTACT
+          </span>
 
           <span className="contact-status">
             <span></span>
@@ -56,21 +58,27 @@ function Contact() {
             initial={{ opacity: 0, x: 35 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.1,
+            }}
           >
 
             {/* Email */}
             <a
               href="mailto:satkhanhello32199@gmail.com"
               className="contact-card"
+              aria-label="Send me an email"
             >
               <div className="contact-card-icon">
-  <span className="social-icon">GH</span>
-</div>
+                <Mail size={19} />
+              </div>
 
               <div className="contact-card-info">
                 <span>EMAIL</span>
-                <strong>satkhanhello32199@gmail.com</strong>
+                <strong>
+                  satkhanhello32199@gmail.com
+                </strong>
               </div>
 
               <ArrowUpRight size={18} />
@@ -82,6 +90,7 @@ function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="contact-card"
+              aria-label="Contact me on WhatsApp"
             >
               <div className="contact-card-icon">
                 <MessageCircle size={19} />
@@ -89,7 +98,9 @@ function Contact() {
 
               <div className="contact-card-info">
                 <span>WHATSAPP</span>
-                <strong>0315 992 6992</strong>
+                <strong>
+                  0315 992 6992
+                </strong>
               </div>
 
               <ArrowUpRight size={18} />
@@ -101,14 +112,19 @@ function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="contact-card"
+              aria-label="Visit my GitHub profile"
             >
               <div className="contact-card-icon">
-  <span className="social-icon">GH</span>
-</div>
+                <span className="social-icon">
+                  GH
+                </span>
+              </div>
 
               <div className="contact-card-info">
                 <span>GITHUB</span>
-                <strong>SUFIYAN9009</strong>
+                <strong>
+                  SUFIYAN9009
+                </strong>
               </div>
 
               <ArrowUpRight size={18} />
@@ -120,14 +136,19 @@ function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="contact-card"
+              aria-label="Visit my LinkedIn profile"
             >
               <div className="contact-card-icon">
-  <span className="social-icon">in</span>
-</div>
+                <span className="social-icon">
+                  in
+                </span>
+              </div>
 
               <div className="contact-card-info">
                 <span>LINKEDIN</span>
-                <strong>CONNECT WITH ME</strong>
+                <strong>
+                  CONNECT WITH ME
+                </strong>
               </div>
 
               <ArrowUpRight size={18} />
@@ -142,13 +163,18 @@ function Contact() {
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{
+            duration: 0.7,
+            delay: 0.2,
+          }}
         >
           <span>
             HAVE AN IDEA?
           </span>
 
-          <a href="mailto:satkhanhello32199@gmail.com">
+          <a
+            href="mailto:satkhanhello32199@gmail.com"
+          >
             START A CONVERSATION
             <ArrowUpRight size={17} />
           </a>

@@ -4,6 +4,7 @@ import CustomCursor from "./components/CustomCursor/CustomCursor";
 import Hero from "./sections/Hero/Hero";
 import About from "./sections/About/About";
 import Skills from "./sections/Skills/Skills";
+import Experience from "./sections/Experience/Experience";
 import Work from "./sections/Work/Work";
 import Contact from "./sections/Contact/Contact";
 
@@ -23,6 +24,7 @@ function App() {
         <Hero />
         <About />
         <Skills />
+        <Experience />
         <Work />
         <Contact />
       </main>

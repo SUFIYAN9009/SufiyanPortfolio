@@ -6,9 +6,12 @@
   position: relative;
   min-height: 100vh;
   width: 100%;
+
   display: flex;
   align-items: center;
+
   overflow: hidden;
+
   background: #050505;
   color: #f5f1e8;
 }
@@ -24,12 +27,12 @@
 
   background-image:
     linear-gradient(
-      rgba(200, 169, 107, 0.035) 1px,
+      rgba(200, 169, 107, 0.03) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(200, 169, 107, 0.035) 1px,
+      rgba(200, 169, 107, 0.03) 1px,
       transparent 1px
     );
 
@@ -38,7 +41,7 @@
   mask-image: linear-gradient(
     to bottom,
     black 0%,
-    rgba(0, 0, 0, 0.5) 65%,
+    rgba(0, 0, 0, 0.45) 65%,
     transparent 100%
   );
 
@@ -47,22 +50,22 @@
 
 
 /* =====================================================
-   GOLD GLOW
+   BACKGROUND GLOW
 ===================================================== */
 
 .hero-glow {
   position: absolute;
 
-  width: 650px;
-  height: 650px;
+  width: 600px;
+  height: 600px;
 
-  top: -280px;
+  top: -300px;
   right: -180px;
 
   background: radial-gradient(
     circle,
-    rgba(200, 169, 107, 0.12) 0%,
-    rgba(200, 169, 107, 0.035) 35%,
+    rgba(200, 169, 107, 0.09) 0%,
+    rgba(200, 169, 107, 0.025) 40%,
     transparent 70%
   );
 
@@ -78,63 +81,11 @@
   position: relative;
   z-index: 2;
 
-  width: min(1240px, calc(100% - 70px));
+  width: min(1200px, calc(100% - 50px));
 
   margin: 0 auto;
 
-  padding-top: 100px;
-}
-
-
-/* =====================================================
-   STATUS
-===================================================== */
-
-.hero-status {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  margin-bottom: 32px;
-
-  color: #77736c;
-
-  font-size: 10px;
-  font-weight: 600;
-
-  letter-spacing: 0.18em;
-}
-
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-
-  border-radius: 50%;
-
-  background: #c8a96b;
-
-  box-shadow:
-    0 0 0 5px rgba(200, 169, 107, 0.08),
-    0 0 15px rgba(200, 169, 107, 0.5);
-
-  animation: statusPulse 2s infinite;
-}
-
-
-@keyframes statusPulse {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 5px rgba(200, 169, 107, 0.08),
-      0 0 15px rgba(200, 169, 107, 0.5);
-  }
-
-  50% {
-    box-shadow:
-      0 0 0 9px rgba(200, 169, 107, 0.02),
-      0 0 22px rgba(200, 169, 107, 0.7);
-  }
+  padding-top: 70px;
 }
 
 
@@ -145,12 +96,12 @@
 .hero-intro {
   margin: 0 0 18px;
 
+  color: #77736c;
+
   font-size: 12px;
   font-weight: 600;
 
-  letter-spacing: 0.18em;
-
-  color: #77736c;
+  letter-spacing: 0.16em;
 }
 
 .hero-intro span {
@@ -165,9 +116,9 @@
 .hero-content h1 {
   margin: 0;
 
-  font-size: clamp(64px, 9vw, 128px);
+  font-size: clamp(64px, 8vw, 112px);
 
-  line-height: 0.88;
+  line-height: 0.9;
 
   font-weight: 800;
 
@@ -177,12 +128,7 @@
 }
 
 .hero-content h1 span {
-  color: transparent;
-
-  -webkit-text-stroke: 1px rgba(245, 241, 232, 0.65);
-
-  text-shadow:
-    0 0 40px rgba(200, 169, 107, 0.04);
+  color: #c8a96b;
 }
 
 
@@ -193,12 +139,13 @@
 .hero-description {
   max-width: 560px;
 
-  margin-top: 38px;
+  margin-top: 34px;
 
-  color: #77736c;
+  color: #858078;
 
   font-size: 16px;
-  line-height: 1.8;
+
+  line-height: 1.75;
 
   font-weight: 400;
 }
@@ -211,77 +158,85 @@
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
 
-  margin-top: 38px;
+  gap: 14px;
+
+  margin-top: 34px;
 }
 
 
-/* Primary */
+/* =====================================================
+   PRIMARY BUTTON
+===================================================== */
 
 .hero-primary-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
 
-  min-height: 50px;
+  gap: 10px;
 
-  padding: 0 24px;
+  min-height: 48px;
+
+  padding: 0 22px;
 
   background: #c8a96b;
   color: #050505;
 
+  text-decoration: none;
+
   font-size: 10px;
   font-weight: 700;
 
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
 
   transition:
-    transform 0.3s ease,
-    background 0.3s ease,
-    box-shadow 0.3s ease;
+    transform 0.25s ease,
+    background 0.25s ease;
 }
 
 .hero-primary-btn:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 
   background: #dfc38b;
-
-  box-shadow:
-    0 12px 35px rgba(200, 169, 107, 0.18);
 }
 
 
-/* Secondary */
+/* =====================================================
+   SECONDARY BUTTON
+===================================================== */
 
 .hero-secondary-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  min-height: 50px;
+  min-height: 48px;
 
-  padding: 0 24px;
+  padding: 0 22px;
 
-  border: 1px solid rgba(200, 169, 107, 0.25);
+  border: 1px solid rgba(200, 169, 107, 0.28);
 
   color: #f5f1e8;
+
+  text-decoration: none;
 
   font-size: 10px;
   font-weight: 600;
 
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
 
   transition:
-    border-color 0.3s ease,
-    color 0.3s ease,
-    background 0.3s ease;
+    border-color 0.25s ease,
+    color 0.25s ease,
+    background 0.25s ease;
 }
 
 .hero-secondary-btn:hover {
   border-color: #c8a96b;
+
   color: #c8a96b;
+
   background: rgba(200, 169, 107, 0.04);
 }
 
@@ -293,15 +248,16 @@
 .hero-technologies {
   display: flex;
   align-items: center;
+
   gap: 28px;
 
-  margin-top: 65px;
+  max-width: 850px;
 
-  padding-top: 22px;
+  margin-top: 55px;
+
+  padding-top: 20px;
 
   border-top: 1px solid rgba(245, 241, 232, 0.08);
-
-  max-width: 850px;
 }
 
 .tech-label {
@@ -312,13 +268,15 @@
   font-size: 9px;
   font-weight: 700;
 
-  letter-spacing: 0.15em;
+  letter-spacing: 0.14em;
 }
 
 .tech-list {
   display: flex;
   align-items: center;
+
   flex-wrap: wrap;
+
   gap: 10px 22px;
 }
 
@@ -329,7 +287,7 @@
 
   font-size: 11px;
 
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
 
   transition: color 0.25s ease;
 }
@@ -366,23 +324,26 @@
 .hero-scroll {
   position: absolute;
 
-  bottom: 38px;
+  bottom: 32px;
   left: 50%;
 
   transform: translateX(-50%);
 
   display: flex;
   align-items: center;
-  gap: 10px;
+
+  gap: 9px;
 
   color: #4f4c47;
 
   font-size: 8px;
   font-weight: 600;
 
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
 
-  transition: color 0.3s ease;
+  text-decoration: none;
+
+  transition: color 0.25s ease;
 }
 
 .hero-scroll:hover {
@@ -391,36 +352,16 @@
 
 
 /* =====================================================
-   NUMBER
-===================================================== */
-
-.hero-number {
-  position: absolute;
-
-  right: 35px;
-  bottom: 38px;
-
-  color: #292723;
-
-  font-size: 10px;
-  font-weight: 700;
-
-  letter-spacing: 0.12em;
-}
-
-
-/* =====================================================
    TABLET
 ===================================================== */
 
 @media (max-width: 950px) {
-
   .hero-container {
     width: min(100% - 50px, 850px);
   }
 
   .hero-content h1 {
-    font-size: clamp(58px, 11vw, 95px);
+    font-size: clamp(58px, 10vw, 90px);
   }
 
   .hero-description {
@@ -428,7 +369,7 @@
   }
 
   .hero-technologies {
-    margin-top: 50px;
+    margin-top: 45px;
   }
 }
 
@@ -438,47 +379,42 @@
 ===================================================== */
 
 @media (max-width: 700px) {
-
   .hero {
     min-height: 100svh;
   }
 
   .hero-container {
     width: calc(100% - 36px);
-    padding-top: 90px;
-  }
 
-  .hero-status {
-    margin-bottom: 26px;
-
-    font-size: 8px;
+    padding-top: 65px;
   }
 
   .hero-intro {
     font-size: 9px;
+
     margin-bottom: 15px;
   }
 
   .hero-content h1 {
-    font-size: clamp(48px, 14vw, 72px);
-    line-height: 0.9;
+    font-size: clamp(46px, 14vw, 70px);
+
+    line-height: 0.91;
   }
 
   .hero-description {
-    margin-top: 28px;
+    margin-top: 25px;
+
+    max-width: 100%;
 
     font-size: 14px;
 
     line-height: 1.7;
-
-    max-width: 100%;
   }
 
   .hero-actions {
-    margin-top: 30px;
+    margin-top: 28px;
 
     flex-direction: column;
-
     align-items: stretch;
 
     gap: 10px;
@@ -492,19 +428,19 @@
   }
 
   .hero-technologies {
-    margin-top: 42px;
-
     display: block;
+
+    margin-top: 38px;
   }
 
   .tech-label {
     display: block;
 
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .tech-list {
-    gap: 10px 20px;
+    gap: 9px 19px;
   }
 
   .tech-list span {
@@ -515,17 +451,12 @@
     display: none;
   }
 
-  .hero-number {
-    right: 18px;
-    bottom: 22px;
-  }
-
   .hero-glow {
-    width: 450px;
-    height: 450px;
+    width: 400px;
+    height: 400px;
 
-    top: -180px;
-    right: -220px;
+    top: -170px;
+    right: -200px;
   }
 
   .hero-grid {
@@ -539,7 +470,6 @@
 ===================================================== */
 
 @media (max-width: 420px) {
-
   .hero-container {
     width: calc(100% - 28px);
   }
@@ -553,7 +483,7 @@
   }
 
   .hero-technologies {
-    margin-top: 35px;
+    margin-top: 32px;
   }
 
   .tech-list span {

@@ -13,29 +13,22 @@ const technologies = [
 function Hero() {
   return (
     <section className="hero" id="home">
+
       {/* Background */}
       <div className="hero-grid"></div>
       <div className="hero-glow"></div>
 
       <div className="hero-container">
 
-        {/* Small Top Label */}
-        <motion.div
-          className="hero-status"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <span className="status-dot"></span>
-          AVAILABLE FOR WORK
-        </motion.div>
-
-        {/* Main Heading */}
+        {/* Intro */}
         <motion.div
           className="hero-content"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.15 }}
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+          }}
         >
           <p className="hero-intro">
             HI, I'M <span>SUFIYAN ALI</span>
@@ -48,17 +41,21 @@ function Hero() {
           </h1>
 
           <p className="hero-description">
-            I build modern, scalable and high-performance
-            digital experiences with clean code and thoughtful design.
+            I build modern web applications with Python,
+            Django, React and JavaScript — focused on clean
+            code, useful interfaces and real-world solutions.
           </p>
         </motion.div>
 
-        {/* Buttons */}
+        {/* Actions */}
         <motion.div
           className="hero-actions"
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
+          transition={{
+            duration: 0.6,
+            delay: 0.25,
+          }}
         >
           <a href="#work" className="hero-primary-btn">
             VIEW MY WORK
@@ -75,19 +72,22 @@ function Hero() {
           className="hero-technologies"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{
+            duration: 0.7,
+            delay: 0.45,
+          }}
         >
-          <span className="tech-label">TECHNOLOGIES</span>
+          <span className="tech-label">BUILT WITH</span>
 
           <div className="tech-list">
             {technologies.map((tech, index) => (
               <motion.span
                 key={tech}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.4,
-                  delay: 0.7 + index * 0.08,
+                  duration: 0.35,
+                  delay: 0.5 + index * 0.07,
                 }}
               >
                 {tech}
@@ -104,14 +104,15 @@ function Hero() {
         className="hero-scroll"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
+        transition={{
+          delay: 0.9,
+          duration: 0.6,
+        }}
       >
         <span>SCROLL TO EXPLORE</span>
         <ArrowDown size={16} />
       </motion.a>
 
-      {/* Side Number */}
-      <div className="hero-number">01</div>
     </section>
   );
 }

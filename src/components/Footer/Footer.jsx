@@ -13,95 +13,95 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
 
-        {/* Top */}
-        <div className="footer-top">
+        {/* Main Footer */}
+        <div className="footer-main">
 
           {/* Brand */}
           <div className="footer-brand">
-            <a href="#home" className="footer-logo">
+            <a
+              href="#home"
+              className="footer-logo"
+              aria-label="Go to homepage"
+            >
               SUFIYAN<span>.</span>
             </a>
 
             <p>
-              Full Stack Developer building modern,
-              scalable, and meaningful digital experiences.
+              Full Stack Developer building modern web
+              applications with Python, Django and React.
             </p>
           </div>
 
-          {/* Navigation */}
-          <div className="footer-column">
-            <span className="footer-title">
-              NAVIGATION
-            </span>
+          {/* Contact */}
+          <div className="footer-contact">
 
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#work">Work</a>
-            <a href="#contact">Contact</a>
-          </div>
-
-          {/* Connect */}
-          <div className="footer-column">
-            <span className="footer-title">
-              CONNECT
+            <span className="footer-label">
+              LET'S CONNECT
             </span>
 
             <a
-              href="https://github.com/SUFIYAN9009"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:satkhanhello32199@gmail.com"
+              className="footer-email"
             >
-              GitHub
-              <ArrowUpRight size={14} />
+              <span>satkhanhello32199@gmail.com</span>
+              <ArrowUpRight size={16} />
             </a>
 
-            <a
-              href="https://www.linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-              <ArrowUpRight size={14} />
-            </a>
+            <div className="footer-socials">
 
-            <a href="mailto:satkhanhello32199@gmail.com">
-              Email
-              <ArrowUpRight size={14} />
-            </a>
+              <a
+                href="https://github.com/SUFIYAN9009"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+                <ArrowUpRight size={12} />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/sufiyan-tanveer/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+                <ArrowUpRight size={12} />
+              </a>
+
+              <a href="#work">
+                Selected Work
+                <ArrowUpRight size={12} />
+              </a>
+
+            </div>
           </div>
-
-          {/* Back To Top */}
-          <button
-            type="button"
-            className="footer-top-button"
-            onClick={scrollToTop}
-            aria-label="Back to top"
-          >
-            <ArrowUp size={18} />
-          </button>
 
         </div>
 
-        {/* Large Brand */}
-        <div className="footer-big-text">
+        {/* Signature */}
+        <div className="footer-signature" aria-hidden="true">
           SUFIYAN<span>.</span>
         </div>
 
-        {/* Bottom */}
+        {/* Bottom Bar */}
         <div className="footer-bottom">
 
           <span>
             © 2026 SUFIYAN ALI
           </span>
 
-          <span>
-            DESIGNED & BUILT WITH PURPOSE
+          <span className="footer-location">
+            PAKISTAN · AVAILABLE FOR WORK
           </span>
 
-          <span>
-            FULL STACK DEVELOPER
-          </span>
+          <button
+            type="button"
+            className="footer-top-button"
+            onClick={scrollToTop}
+            aria-label="Back to top"
+          >
+            <span>BACK TO TOP</span>
+            <ArrowUp size={13} />
+          </button>
 
         </div>
 
