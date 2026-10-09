@@ -1,34 +1,30 @@
+
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowDown } from "lucide-react";
 import "./Hero.css";
 
 const technologies = [
-  "Python",
+  "Python & Backend",
   "Django",
-  "React",
+  "React Frontend",
   "JavaScript",
-  "REST API",
+  "REST API Integration",
+  "Database Management",
+  "Problem Solving",
 ];
 
 function Hero() {
   return (
     <section className="hero" id="home">
-
-      {/* Background */}
-      <div className="hero-grid"></div>
-      <div className="hero-glow"></div>
+      <div className="hero-grid" />
+      <div className="hero-glow" />
 
       <div className="hero-container">
-
-        {/* Intro */}
         <motion.div
           className="hero-content"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            ease: "easeOut",
-          }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <p className="hero-intro">
             HI, I'M <span>SUFIYAN ALI</span>
@@ -41,21 +37,17 @@ function Hero() {
           </h1>
 
           <p className="hero-description">
-            I build modern web applications with Python,
-            Django, React and JavaScript — focused on clean
-            code, useful interfaces and real-world solutions.
+            I build modern web applications using Python,
+            Django, React and JavaScript. I focus on clean code,
+            database integration and solving real-world problems.
           </p>
         </motion.div>
 
-        {/* Actions */}
         <motion.div
           className="hero-actions"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.25,
-          }}
+          transition={{ duration: 0.6, delay: 0.25 }}
         >
           <a href="#work" className="hero-primary-btn">
             VIEW MY WORK
@@ -67,17 +59,13 @@ function Hero() {
           </a>
         </motion.div>
 
-        {/* Technologies */}
         <motion.div
           className="hero-technologies"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.7,
-            delay: 0.45,
-          }}
+          transition={{ duration: 0.7, delay: 0.45 }}
         >
-          <span className="tech-label">BUILT WITH</span>
+          <span className="tech-label">MY SKILLS & EXPERTISE</span>
 
           <div className="tech-list">
             {technologies.map((tech, index) => (
@@ -95,26 +83,21 @@ function Hero() {
             ))}
           </div>
         </motion.div>
-
       </div>
 
-      {/* Scroll Indicator */}
       <motion.a
         href="#about"
         className="hero-scroll"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{
-          delay: 0.9,
-          duration: 0.6,
-        }}
+        transition={{ delay: 0.9, duration: 0.6 }}
       >
         <span>SCROLL TO EXPLORE</span>
         <ArrowDown size={16} />
       </motion.a>
-
     </section>
   );
 }
 
 export default Hero;
+
