@@ -1,18 +1,21 @@
+
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
   ExternalLink,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Work.css";
 
 const projects = [
   {
+    slug: "e-commerce",
     number: "01",
     category: "FULL STACK WEB APPLICATION",
     title: "E-Commerce",
     titleAccent: "Platform.",
+    previewName: "ecommerce-shop",
     description:
       "A full-stack e-commerce application for browsing products, managing carts, placing orders, and handling products through an admin system.",
     technologies: [
@@ -24,13 +27,26 @@ const projects = [
     ],
     type: "01",
     status: "IN DEVELOPMENT",
+    images: [
+      { src: "/images/projects/ecommerce.jpg", label: "HOME" },
+      { src: "/images/projects/ecommerce1.jpg", label: "PRODUCTS" },
+      { src: "/images/projects/ecommerce2.jpg", label: "STORY" },
+      { src: "/images/projects/ecommerce3.jpg", label: "SIGN UP" },
+      { src: "/images/projects/ecommerce4.jpg", label: "ADMIN PANEL" },
+      {
+        src: "/images/projects/ecommerce5.jpg",
+        label: "PRODUCT MANAGEMENT",
+      },
+      { src: "/images/projects/ecommerce6.jpg", label: "ADD PRODUCT" },
+    ],
   },
-
   {
+    slug: "alfa-lithium",
     number: "02",
     category: "CLIENT WEBSITE",
     title: "ALFA Lithium",
     titleAccent: "Batteries.",
+    previewName: "alfa-lithium-batteries",
     description:
       "A responsive business website built for ALFA Lithium Batteries to present its brand, products, and services through a clean digital experience.",
     technologies: [
@@ -43,154 +59,151 @@ const projects = [
     status: "LIVE",
     liveUrl: "https://alfa-website-ecru.vercel.app",
     images: [
-      {
-        src: "/images/projects/home.jpg",
-        label: "HOME",
-      },
-      {
-        src: "/images/projects/about.jpg",
-        label: "ABOUT",
-      },
-      {
-        src: "/images/projects/engneer.jpg",
-        label: "ENGINEER",
-      },
-      {
-        src: "/images/projects/contact.jpg",
-        label: "CONTACT",
-      },
+      { src: "/images/projects/home.jpg", label: "HOME" },
+      { src: "/images/projects/about.jpg", label: "ABOUT" },
+      { src: "/images/projects/engneer.jpg", label: "ENGINEER" },
+      { src: "/images/projects/contact.jpg", label: "CONTACT" },
     ],
   },
 ];
 
+const AUTO_SLIDE_DELAY = 5000;
+
 function ProjectVisual({ project }) {
   const [currentImage, setCurrentImage] = useState(0);
+  const [failedImages, setFailedImages] = useState([]);
 
   const images = project.images || [];
+  const activeImage = images[currentImage];
+  const imageError = activeImage
+    ? failedImages.includes(activeImage.src)
+    : false;
+
+  useEffect(() => {
+    setCurrentImage(0);
+    setFailedImages([]);
+  }, [project.slug]);
 
   const nextImage = () => {
-    setCurrentImage((prev) =>
-      prev === images.length - 1 ? 0 : prev + 1
-    );
+    if (!images.length) return;
+
+    setCurrentImage((current) => (current + 1) % images.length);
   };
 
   const previousImage = () => {
-    setCurrentImage((prev) =>
-      prev === 0 ? images.length - 1 : prev - 1
+    if (!images.length) return;
+
+    setCurrentImage(
+      (current) => (current - 1 + images.length) % images.length
     );
   };
 
-  /* =====================================================
-     E-COMMERCE PREVIEW
-  ===================================================== */
+  const selectImage = (index) => {
+    setCurrentImage(index);
+  };
+
+  const handleImageError = (src) => {
+    setFailedImages((current) =>
+      current.includes(src) ? current : [...current, src]
+    );
+  };
 
   if (!images.length) {
     return (
       <div className="ecommerce-preview">
-
-        <div className="ecommerce-grid"></div>
+        <div className="ecommerce-grid" />
 
         <div className="ecommerce-top">
           <span>FULL STACK</span>
-          <span>01 / 02</span>
+          <span>
+            {project.number} / {String(projects.length).padStart(2, "0")}
+          </span>
         </div>
 
         <div className="ecommerce-center">
-          <span className="ecommerce-outline">
-            SHOP
-          </span>
-
-          <span className="ecommerce-solid">
-            E-COMMERCE
-          </span>
+          <span className="ecommerce-outline">SHOP</span>
+          <span className="ecommerce-solid">E-COMMERCE</span>
         </div>
 
         <div className="ecommerce-bottom">
           <span>PYTHON / DJANGO / REACT</span>
           <span>WEB APPLICATION</span>
         </div>
-
       </div>
     );
   }
 
-  const activeImage = images[currentImage];
-
-  /* =====================================================
-     ALFA WEBSITE PREVIEW
-  ===================================================== */
-
   return (
     <div className="browser-preview">
-
       <div className="browser-bar">
-
-        <div className="browser-dots">
-          <span></span>
-          <span></span>
-          <span></span>
+        <div className="browser-dots" aria-hidden="true">
+          <span />
+          <span />
+          <span />
         </div>
 
         <div className="browser-address">
-          <span className="browser-lock">●</span>
-          alfa-lithium-batteries
+          <span className="browser-lock" aria-hidden="true">
+            ●
+          </span>
+          {project.previewName || project.slug}
         </div>
 
-        <div className="browser-status">
-          LIVE
-        </div>
-
+        <div className="browser-status">{project.status === "LIVE" ? "LIVE" : "PREVIEW"}</div>
       </div>
 
       <div className="browser-screen">
-
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={activeImage.src}
-            src={activeImage.src}
-            alt={`ALFA Lithium Batteries ${activeImage.label} page`}
-            initial={{
-              opacity: 0,
-              scale: 1.015,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            exit={{
-              opacity: 0,
-              scale: 1,
-            }}
-            transition={{
-              duration: 0.3,
-              ease: "easeOut",
-            }}
-          />
-        </AnimatePresence>
-
-        <div className="preview-info">
-          <div>
-            <span className="preview-project">
-              ALFA LITHIUM BATTERIES
+        {activeImage && !imageError ? (
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.img
+              key={activeImage.src}
+              className="project-screenshot"
+              src={activeImage.src}
+              alt={`${project.title} ${activeImage.label} screenshot`}
+              initial={{ opacity: 0, x: 18, scale: 1.01 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -18 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              onError={() => handleImageError(activeImage.src)}
+            />
+          </AnimatePresence>
+        ) : (
+          <div className="preview-image-fallback">
+            <span>
+              {project.title} {project.titleAccent}
             </span>
-
-            <span className="preview-page">
-              {activeImage.label}
+            <span>
+              {activeImage?.label || "SCREENSHOT"} PREVIEW UNAVAILABLE
+            </span>
+            <span className="preview-fallback-hint">
+              Check the image filename and public folder path.
             </span>
           </div>
+        )}
 
-          <span className="preview-count">
-            {String(currentImage + 1).padStart(2, "0")}
-            {" / "}
-            {String(images.length).padStart(2, "0")}
-          </span>
-        </div>
+        {activeImage && (
+          <div className="preview-info">
+            <div>
+              <span className="preview-project">
+                {project.title} {project.titleAccent}
+              </span>
+              <span className="preview-page">{activeImage.label}</span>
+            </div>
+
+            <span className="preview-count">
+              {String(currentImage + 1).padStart(2, "0")}
+              {" / "}
+              {String(images.length).padStart(2, "0")}
+            </span>
+          </div>
+        )}
 
         <button
           type="button"
           className="preview-arrow preview-arrow-left"
           onClick={previousImage}
-          aria-label="Previous screenshot"
+          aria-label={`Previous ${project.title} screenshot`}
+          disabled={images.length < 2}
         >
           <ArrowLeft size={15} />
         </button>
@@ -199,17 +212,15 @@ function ProjectVisual({ project }) {
           type="button"
           className="preview-arrow preview-arrow-right"
           onClick={nextImage}
-          aria-label="Next screenshot"
+          aria-label={`Next ${project.title} screenshot`}
+          disabled={images.length < 2}
         >
           <ArrowRight size={15} />
         </button>
-
       </div>
 
       <div className="preview-thumbnails">
-
         <div className="preview-thumbnail-list">
-
           {images.map((image, index) => (
             <button
               key={image.src}
@@ -219,124 +230,159 @@ function ProjectVisual({ project }) {
                   ? "preview-thumbnail active"
                   : "preview-thumbnail"
               }
-              onClick={() => setCurrentImage(index)}
+              onClick={() => selectImage(index)}
               aria-label={`View ${image.label} screenshot`}
-              aria-current={
-                index === currentImage
-                  ? "true"
-                  : undefined
-              }
+              aria-pressed={index === currentImage}
             >
               <img
                 src={image.src}
                 alt=""
+                loading="lazy"
+                onError={() => handleImageError(image.src)}
               />
-
               <span>{image.label}</span>
             </button>
           ))}
-
         </div>
-
       </div>
     </div>
   );
 }
 
 function Work() {
+  const [activeProject, setActiveProject] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  const project = projects[activeProject];
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    const updateMotionPreference = () => {
+      setReducedMotion(mediaQuery.matches);
+    };
+
+    updateMotionPreference();
+    mediaQuery.addEventListener("change", updateMotionPreference);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateMotionPreference);
+    };
+  }, []);
+
+  const showProject = (index) => {
+    const nextIndex = (index + projects.length) % projects.length;
+
+    if (nextIndex === activeProject) return;
+
+    setDirection(nextIndex > activeProject ? 1 : -1);
+    setActiveProject(nextIndex);
+  };
+
+  const showPrevious = () => {
+    setDirection(-1);
+    setActiveProject(
+      (current) => (current - 1 + projects.length) % projects.length
+    );
+  };
+
+  const showNext = () => {
+    setDirection(1);
+    setActiveProject((current) => (current + 1) % projects.length);
+  };
+
+  useEffect(() => {
+    if (isPaused || reducedMotion || projects.length < 2) {
+      return undefined;
+    }
+
+    const timer = window.setInterval(() => {
+      setDirection(1);
+      setActiveProject(
+        (current) => (current + 1) % projects.length
+      );
+    }, AUTO_SLIDE_DELAY);
+
+    return () => window.clearInterval(timer);
+  }, [isPaused, reducedMotion]);
+
+  const handleFocus = () => setIsPaused(true);
+
+  const handleBlur = (event) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setIsPaused(false);
+    }
+  };
+
   return (
     <section className="work" id="work">
-
       <div className="work-container">
-
-        {/* Section Header */}
-
         <motion.div
           className="work-header"
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.2,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
+          initial={reducedMotion ? false : { opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: reducedMotion ? 0 : 0.6 }}
         >
           <div>
-
-            <span className="work-label">
-              SELECTED PROJECTS
-            </span>
-
+            <span className="work-label">SELECTED PROJECTS</span>
             <h2>
               WHAT I'VE
               <br />
               <span>BUILT.</span>
             </h2>
-
           </div>
 
           <p>
-            A selection of real projects built with
-            modern technologies and practical solutions.
+            A selection of real projects built with modern
+            technologies and practical solutions.
           </p>
-
         </motion.div>
 
-        {/* Projects */}
-
-        <div className="projects">
-
-          {projects.map((project, index) => (
-
+        <div
+          className="projects"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocusCapture={handleFocus}
+          onBlurCapture={handleBlur}
+        >
+          <AnimatePresence initial={false} mode="wait">
             <motion.article
               className="project"
               key={project.number}
-              initial={{
-                opacity: 0,
-                y: 35,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-                amount: 0.15,
-              }}
+              initial={
+                reducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 0, x: direction * 100 }
+              }
+              animate={{ opacity: 1, x: 0 }}
+              exit={
+                reducedMotion
+                  ? { opacity: 0 }
+                  : { opacity: 0, x: direction * -100 }
+              }
               transition={{
-                duration: 0.65,
-                delay: index * 0.1,
+                x: {
+                  duration: reducedMotion ? 0 : 0.55,
+                  ease: [0.22, 1, 0.36, 1],
+                },
+                opacity: {
+                  duration: reducedMotion ? 0 : 0.35,
+                },
               }}
             >
+              <div className="project-number">{project.number}</div>
 
-              <div className="project-number">
-                {project.number}
+              <div className={`project-visual project-visual-${project.type}`}>
+                <ProjectVisual project={project} />
               </div>
-
-              {/* Project Preview */}
-
-              <div
-                className={`project-visual project-visual-${project.type}`}
-              >
-                <ProjectVisual
-                  project={project}
-                />
-              </div>
-
-              {/* Project Information */}
 
               <div className="project-info">
-
                 <div className="project-meta">
-
                   <span className="project-category">
                     {project.category}
                   </span>
@@ -346,34 +392,23 @@ function Work() {
                       .toLowerCase()
                       .replace(/\s+/g, "-")}`}
                   >
-                    <span className="project-status-dot"></span>
+                    <span className="project-status-dot" />
                     {project.status}
                   </span>
-
                 </div>
 
                 <h3>
                   {project.title}
                   <br />
-                  <span>
-                    {project.titleAccent}
-                  </span>
+                  <span>{project.titleAccent}</span>
                 </h3>
 
-                <p>
-                  {project.description}
-                </p>
+                <p>{project.description}</p>
 
                 <div className="project-tech">
-
-                  {project.technologies.map(
-                    (tech) => (
-                      <span key={tech}>
-                        {tech}
-                      </span>
-                    )
-                  )}
-
+                  {project.technologies.map((tech) => (
+                    <span key={tech}>{tech}</span>
+                  ))}
                 </div>
 
                 {project.liveUrl && (
@@ -382,54 +417,81 @@ function Work() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-live-link"
-                    aria-label={`Open ${project.title} live website`}
+                    aria-label={`Open ${project.title} ${project.titleAccent} live website`}
                   >
                     VIEW LIVE SITE
                     <ExternalLink size={14} />
                   </a>
                 )}
-
               </div>
-
             </motion.article>
-
-          ))}
-
+          </AnimatePresence>
         </div>
 
-        {/* Bottom */}
+        <div className="project-carousel-controls">
+          <div className="project-carousel-count" aria-live="polite">
+            <span>{String(activeProject + 1).padStart(2, "0")}</span>
+            <span className="project-carousel-divider">/</span>
+            <span>{String(projects.length).padStart(2, "0")}</span>
+          </div>
+
+          <div
+            className="project-carousel-dots"
+            role="group"
+            aria-label="Choose a project"
+          >
+            {projects.map((item, index) => (
+              <button
+                key={item.number}
+                type="button"
+                className={
+                  index === activeProject
+                    ? "project-carousel-dot active"
+                    : "project-carousel-dot"
+                }
+                onClick={() => showProject(index)}
+                aria-label={`Show project ${index + 1}: ${item.title} ${item.titleAccent}`}
+                aria-pressed={index === activeProject}
+              />
+            ))}
+          </div>
+
+          <div className="project-carousel-arrows">
+            <button
+              type="button"
+              onClick={showPrevious}
+              aria-label="Previous project"
+            >
+              <ArrowLeft size={18} />
+            </button>
+
+            <button
+              type="button"
+              onClick={showNext}
+              aria-label="Next project"
+            >
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
 
         <motion.div
           className="work-bottom"
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
+          initial={reducedMotion ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: reducedMotion ? 0 : 0.6 }}
         >
-
-          <span>
-            MORE PROJECTS COMING SOON
-          </span>
-
+          <span>MORE PROJECTS COMING SOON</span>
           <a href="#contact">
             START A PROJECT
-            <span>↗</span>
+            <span aria-hidden="true">↗</span>
           </a>
-
         </motion.div>
-
       </div>
-
     </section>
   );
 }
 
 export default Work;
+

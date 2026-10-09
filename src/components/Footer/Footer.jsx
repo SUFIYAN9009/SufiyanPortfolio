@@ -13,7 +13,6 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
 
-        {/* Main Footer */}
         <div className="footer-main">
 
           {/* Brand */}
@@ -34,7 +33,6 @@ function Footer() {
 
           {/* Contact */}
           <div className="footer-contact">
-
             <span className="footer-label">
               LET'S CONNECT
             </span>
@@ -48,7 +46,6 @@ function Footer() {
             </a>
 
             <div className="footer-socials">
-
               <a
                 href="https://github.com/SUFIYAN9009"
                 target="_blank"
@@ -71,15 +68,9 @@ function Footer() {
                 Selected Work
                 <ArrowUpRight size={12} />
               </a>
-
             </div>
           </div>
 
-        </div>
-
-        {/* Signature */}
-        <div className="footer-signature" aria-hidden="true">
-          SUFIYAN<span>.</span>
         </div>
 
         {/* Bottom Bar */}

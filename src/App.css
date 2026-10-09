@@ -1,31 +1,7 @@
-/* =====================================================
-   GLOBAL RESET
-===================================================== */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  background: #050505;
-
-  color: #f5f1e8;
-
-  overflow-x: hidden;
-}
+/* =========================================
+   SUFIYAN PORTFOLIO — CRYSTAL GLASS
+========================================= */
 
 #root {
   width: 100%;
@@ -33,14 +9,12 @@ body {
 }
 
 .app {
+  position: relative;
   width: 100%;
   min-height: 100vh;
-
-  background: #050505;
-
-  color: #f5f1e8;
-
-  overflow-x: hidden;
+  overflow-x: clip;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 main {
@@ -48,17 +22,18 @@ main {
 }
 
 section {
+  position: relative;
   width: 100%;
-
   scroll-margin-top: 90px;
 }
 
+/* Links */
 a {
-  text-decoration: none;
-
   color: inherit;
+  text-decoration: none;
 }
 
+/* Form controls */
 button,
 input,
 textarea {
@@ -67,48 +42,52 @@ textarea {
 
 button {
   border: 0;
+  background: transparent;
 }
 
+/* Images */
 img {
-  max-width: 100%;
-
   display: block;
+  max-width: 100%;
 }
 
+/* Text selection */
 ::selection {
-  background: #c8a96b;
-
-  color: #050505;
+  background: rgba(52, 120, 212, 0.24);
+  color: var(--text-primary);
 }
 
-
-/* =====================================================
-   SCROLLBAR
-===================================================== */
-
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(200, 169, 107, 0.45);
-
+  border: 2px solid var(--bg-primary);
   border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    var(--accent),
+    var(--turquoise)
+  );
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c8a96b;
+  background: var(--gradient-accent);
 }
 
+/* Keyboard accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
 
-/* =====================================================
-   MOBILE
-===================================================== */
-
+/* Responsive section navigation spacing */
 @media (max-width: 950px) {
   section {
     scroll-margin-top: 85px;
@@ -116,11 +95,6 @@ img {
 }
 
 @media (max-width: 700px) {
-
-  html {
-    scroll-behavior: smooth;
-  }
-
   section {
     scroll-margin-top: 78px;
   }
@@ -131,8 +105,16 @@ img {
 }
 
 @media (max-width: 480px) {
-
   section {
     scroll-margin-top: 75px;
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
   }
 }

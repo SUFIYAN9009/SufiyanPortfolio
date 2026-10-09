@@ -4,10 +4,9 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import "./Navbar.css";
 
 const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
+  { name: "Home", href: "#home" },
+  { name: "Work", href: "#work" },
   { name: "Contact", href: "#contact" },
-  { name: "Experience", href: "#experience" }
 ];
 
 function Navbar() {
@@ -44,7 +43,10 @@ function Navbar() {
         <a
           href="#home"
           className="navbar-logo"
-          onClick={() => closeMenu("#home")}
+          onClick={(e) => {
+            e.preventDefault();
+            closeMenu("#home");
+          }}
         >
           SUFIYAN<span>.</span>
         </a>
@@ -55,7 +57,10 @@ function Navbar() {
             <a
               key={item.name}
               href={item.href}
-              onClick={() => closeMenu(item.href)}
+              onClick={(e) => {
+                e.preventDefault();
+                closeMenu(item.href);
+              }}
             >
               {item.name}
             </a>
@@ -75,7 +80,10 @@ function Navbar() {
           <a
             href="#contact"
             className="navbar-cta"
-            onClick={() => closeMenu("#contact")}
+            onClick={(e) => {
+              e.preventDefault();
+              closeMenu("#contact");
+            }}
           >
             Let's Talk
             <ArrowUpRight size={15} />
@@ -120,7 +128,10 @@ function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
-                onClick={() => closeMenu(item.href)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  closeMenu(item.href);
+                }}
               >
                 {item.name}
                 <ArrowUpRight size={15} />
@@ -130,7 +141,10 @@ function Navbar() {
             <a
               href="#contact"
               className="mobile-cta"
-              onClick={() => closeMenu("#contact")}
+              onClick={(e) => {
+                e.preventDefault();
+                closeMenu("#contact");
+              }}
             >
               Let's Talk
               <ArrowUpRight size={17} />
