@@ -5,80 +5,139 @@ import "./CustomCursor.css";
 function CustomCursor() {
   const dotRef = useRef(null);
   const followerRef = useRef(null);
-
-  const pointer = useRef({ x: 0, y: 0 });
-  const follower = useRef({ x: 0, y: 0 });
-  const visible = useRef(false);
+  const animationFrameRef = useRef(null);
 
   useEffect(() => {
-    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    const dot = dotRef.current;
+    const follower = followerRef.current;
 
-    // Use the custom cursor only for mouse-like pointers.
-    if (!finePointer) return undefined;
+    if (!dot || !follower) return;
 
-    let animationFrame;
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let followerX = targetX;
+    let followerY = targetY;
+    let visible = false;
 
-    const updatePointer = (x, y) => {
-      pointer.current.x = x;
-      pointer.current.y = y;
+    const showCursor = () => {
+      if (visible) return;
+      visible = true;
+      dot.classList.add("cursor-visible");
+      follower.classList.add("cursor-visible");
+    };
 
-      if (!visible.current) {
-        visible.current = true;
+    const hideCursor = () => {
+      visible = false;
+      dot.classList.remove("cursor-visible");
+      follower.classList.remove("cursor-visible");
+    };
 
-        follower.current.x = x;
-        follower.current.y = y;
+    const handlePointerMove = (event) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
 
-        dotRef.current?.classList.add("cursor-visible");
-        followerRef.current?.classList.add("cursor-visible");
+      dot.style.left = `${targetX}px`;
+      dot.style.top = `${targetY}px`;
+
+      showCursor();
+    };
+
+    const animateFollower = () => {
+      followerX += (targetX - followerX) * 0.18;
+      followerY += (targetY - followerY) * 0.18;
+
+      follower.style.left = `${followerX}px`;
+      follower.style.top = `${followerY}px`;
+
+      animationFrameRef.current =
+        requestAnimationFrame(animateFollower);
+    };
+
+    const handlePointerLeave = () => {
+      hideCursor();
+    };
+
+    const handlePointerEnter = (event) => {
+      if (event.pointerType === "mouse") {
+        showCursor();
       }
     };
 
-    const handleMouseMove = (event) => {
-      updatePointer(event.clientX, event.clientY);
+    const handleTouchStart = (event) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+
+      targetX = touch.clientX;
+      targetY = touch.clientY;
+      followerX = targetX;
+      followerY = targetY;
+
+      dot.style.left = `${targetX}px`;
+      dot.style.top = `${targetY}px`;
+      follower.style.left = `${followerX}px`;
+      follower.style.top = `${followerY}px`;
+
+      showCursor();
     };
 
-    const handleMouseLeave = () => {
-      visible.current = false;
+    const handleTouchMove = (event) => {
+      const touch = event.touches[0];
+      if (!touch) return;
 
-      dotRef.current?.classList.remove("cursor-visible");
-      followerRef.current?.classList.remove("cursor-visible");
+      targetX = touch.clientX;
+      targetY = touch.clientY;
+
+      dot.style.left = `${targetX}px`;
+      dot.style.top = `${targetY}px`;
+
+      showCursor();
     };
 
-    const animate = () => {
-      if (visible.current) {
-        follower.current.x +=
-          (pointer.current.x - follower.current.x) * 0.16;
-
-        follower.current.y +=
-          (pointer.current.y - follower.current.y) * 0.16;
-
-        if (dotRef.current) {
-          dotRef.current.style.left = `${pointer.current.x}px`;
-          dotRef.current.style.top = `${pointer.current.y}px`;
-        }
-
-        if (followerRef.current) {
-          followerRef.current.style.left = `${follower.current.x}px`;
-          followerRef.current.style.top = `${follower.current.y}px`;
-        }
-      }
-
-      animationFrame = window.requestAnimationFrame(animate);
+    const handleTouchEnd = () => {
+      hideCursor();
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    document.documentElement.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerenter", handlePointerEnter);
+    document.documentElement.addEventListener(
+      "mouseleave",
+      handlePointerLeave
+    );
+    window.addEventListener("blur", handlePointerLeave);
 
-    animationFrame = window.requestAnimationFrame(animate);
+    window.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    window.addEventListener("touchmove", handleTouchMove, {
+      passive: true,
+    });
+    window.addEventListener("touchend", handleTouchEnd, {
+      passive: true,
+    });
+    window.addEventListener("touchcancel", handleTouchEnd, {
+      passive: true,
+    });
+
+    animationFrameRef.current =
+      requestAnimationFrame(animateFollower);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerenter", handlePointerEnter);
       document.documentElement.removeEventListener(
         "mouseleave",
-        handleMouseLeave
+        handlePointerLeave
       );
+      window.removeEventListener("blur", handlePointerLeave);
 
-      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("touchcancel", handleTouchEnd);
+
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
   }, []);
 
@@ -89,7 +148,6 @@ function CustomCursor() {
         className="cursor-follower"
         aria-hidden="true"
       />
-
       <div
         ref={dotRef}
         className="cursor-dot"
@@ -100,4 +158,3 @@ function CustomCursor() {
 }
 
 export default CustomCursor;
-

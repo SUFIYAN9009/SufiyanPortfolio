@@ -1,95 +1,108 @@
+
 /* =========================================================
-SUFIYAN PORTFOLIO — CRYSTAL GLASS CURSOR
+   SUFIYAN PORTFOLIO — CRYSTAL GLASS CURSOR
+   Desktop + Mobile Touch Support
 ========================================================= */
 
 .cursor-dot {
-position: fixed;
-top: 0;
-left: 0;
-width: 6px;
-height: 6px;
-border-radius: 50%;
-background: #3478D4;
-pointer-events: none;
-z-index: 99999;
-transform: translate(-50%, -50%);
-opacity: 0;
-box-shadow:
-0 0 8px rgba(52, 120, 212, 0.7),
-0 0 18px rgba(105, 201, 208, 0.4);
-transition:
-opacity 0.2s ease,
-background 0.2s ease;
-will-change: transform;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3478d4;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  box-shadow:
+    0 0 8px rgba(52, 120, 212, 0.7),
+    0 0 18px rgba(105, 201, 208, 0.4);
+  transition:
+    opacity 0.2s ease,
+    background 0.2s ease;
+  will-change: left, top;
 }
 
 /* Frosted-glass follower ring */
 .cursor-follower {
-position: fixed;
-top: 0;
-left: 0;
-width: 32px;
-height: 32px;
-border: 1px solid rgba(52, 120, 212, 0.42);
-border-radius: 50%;
-background: rgba(255, 255, 255, 0.08);
-box-shadow:
-0 0 0 4px rgba(52, 120, 212, 0.035),
-inset 0 0 8px rgba(255, 255, 255, 0.35);
-backdrop-filter: blur(2px);
--webkit-backdrop-filter: blur(2px);
-pointer-events: none;
-z-index: 99998;
-transform: translate(-50%, -50%);
-opacity: 0;
-transition:
-width 0.25s ease,
-height 0.25s ease,
-border-color 0.25s ease,
-background 0.25s ease,
-box-shadow 0.25s ease,
-opacity 0.2s ease;
-will-change: transform;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(52, 120, 212, 0.42);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 0 4px rgba(52, 120, 212, 0.035),
+    inset 0 0 8px rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.2s ease;
+  will-change: left, top;
 }
 
-/* Cursor becomes visible after pointer movement */
+/* Show after mouse or touch movement */
 .cursor-visible {
-opacity: 1;
+  opacity: 1;
 }
 
-/* Desktop and precision pointers */
+/* Desktop: hide the native mouse pointer */
 @media (pointer: fine) {
-html,
-body,
-a,
-button,
-input,
-textarea,
-select,
-[role="button"] {
-cursor: none;
-}
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: none;
+  }
 }
 
-/* Touch devices: preserve the normal touch experience */
+/* Mobile: retain normal touch interactions */
 @media (pointer: coarse) {
-.cursor-dot,
-.cursor-follower {
-display: none;
-}
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: auto;
+  }
 
-html,
-body,
-a,
-button {
-cursor: auto;
-}
+  .cursor-dot,
+  .cursor-follower {
+    display: block;
+  }
+
+  .cursor-follower {
+    width: 28px;
+    height: 28px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 /* Accessibility: reduce decorative motion */
 @media (prefers-reduced-motion: reduce) {
-.cursor-dot,
-.cursor-follower {
-transition: opacity 0.2s ease;
-}
+  .cursor-dot,
+  .cursor-follower {
+    transition: opacity 0.2s ease;
+  }
 }
