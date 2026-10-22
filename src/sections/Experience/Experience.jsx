@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Code2,
+  ExternalLink,
+} from "lucide-react";
 import "./Experience.css";
 
 const experiences = [
@@ -10,7 +15,7 @@ const experiences = [
     title: "Full Stack Web Developer",
     company: "PFD Corporation",
     description:
-      "Worked on full-stack web development tasks using Python, Django, React and JavaScript. Contributed to an e-commerce web application and worked with Git-based development workflows.",
+      "Contributed to full-stack development tasks, building web application features and gaining practical experience with modern development workflows.",
     technologies: [
       "Python",
       "Django",
@@ -18,6 +23,7 @@ const experiences = [
       "JavaScript",
       "REST API",
     ],
+    icon: Code2,
   },
   {
     number: "02",
@@ -26,103 +32,148 @@ const experiences = [
     title: "Frontend Developer",
     company: "ALFA Lithium Batteries",
     description:
-      "Designed and developed a responsive business website using React and JavaScript, focusing on clean UI, responsive layouts and a professional user experience.",
+      "Developed a responsive business website with a clean interface, adaptable layouts and a professional user experience across screen sizes.",
     technologies: [
       "React",
       "JavaScript",
       "CSS3",
-      "Responsive UI",
+      "Responsive Design",
     ],
     link: "https://alfa-website-ecru.vercel.app",
+    icon: BriefcaseBusiness,
   },
 ];
 
 function Experience() {
   return (
     <section className="experience" id="experience">
-      <div className="experience-container">
+      <div className="experience-grid" aria-hidden="true" />
+      <div
+        className="experience-glow experience-glow-one"
+        aria-hidden="true"
+      />
+      <div
+        className="experience-glow experience-glow-two"
+        aria-hidden="true"
+      />
 
+      <div className="experience-container">
         <motion.div
           className="experience-header"
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.65 }}
         >
-          <div>
+          <div className="experience-heading">
             <span className="experience-label">
-              EXPERIENCE
+              <span className="experience-label-dot" />
+              EXPERIENCE & WORK
             </span>
 
             <h2>
-              WHERE I'VE
+              Building through
               <br />
-              <span>WORKED.</span>
+              <span>real experience.</span>
             </h2>
           </div>
 
-          <p>
-            Practical experience through internships and
-            real-world client projects.
+          <p className="experience-intro">
+            A look at the opportunities, projects and practical
+            work that continue to shape my development journey.
           </p>
         </motion.div>
 
-        <div className="experience-list">
-          {experiences.map((experience, index) => (
-            <motion.article
-              className="experience-item"
-              key={experience.number}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-              }}
-            >
-              <div className="experience-number">
-                {experience.number}
-              </div>
+        <div className="experience-timeline">
+          {experiences.map((experience, index) => {
+            const Icon = experience.icon;
 
-              <div className="experience-period">
-                {experience.period}
-              </div>
-
-              <div className="experience-content">
-                <div className="experience-meta">
-                  <span>{experience.type}</span>
+            return (
+              <motion.article
+                className="experience-item"
+                key={experience.number}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.15,
+                }}
+              >
+                <div className="experience-marker">
+                  <span>{experience.number}</span>
                 </div>
 
-                <h3>{experience.title}</h3>
+                <div className="experience-card">
+                  <div className="experience-card-top">
+                    <div className="experience-icon">
+                      <Icon size={21} strokeWidth={1.7} />
+                    </div>
 
-                <h4>{experience.company}</h4>
+                    <div className="experience-meta">
+                      <span className="experience-type">
+                        {experience.type}
+                      </span>
+                      <span className="experience-period">
+                        {experience.period}
+                      </span>
+                    </div>
 
-                <p>{experience.description}</p>
+                    <ArrowUpRight
+                      className="experience-corner-arrow"
+                      size={20}
+                    />
+                  </div>
 
-                <div className="experience-tech">
-                  {experience.technologies.map((technology) => (
-                    <span key={technology}>
-                      {technology}
-                    </span>
-                  ))}
+                  <h3>{experience.title}</h3>
+                  <h4>{experience.company}</h4>
+
+                  <p className="experience-description">
+                    {experience.description}
+                  </p>
+
+                  <div className="experience-divider" />
+
+                  <span className="experience-tech-label">
+                    TECHNOLOGIES & SKILLS
+                  </span>
+
+                  <div className="experience-tech">
+                    {experience.technologies.map((technology) => (
+                      <span key={technology}>{technology}</span>
+                    ))}
+                  </div>
+
+                  {experience.link && (
+                    <a
+                      href={experience.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="experience-link"
+                    >
+                      <span>Explore project</span>
+                      <ExternalLink size={15} />
+                    </a>
+                  )}
                 </div>
-
-                {experience.link && (
-                  <a
-                    href={experience.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="experience-link"
-                  >
-                    VIEW PROJECT
-                    <ArrowUpRight size={14} />
-                  </a>
-                )}
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
 
+        <motion.div
+          className="experience-footer"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="experience-footer-line" />
+          <p>Every project is another opportunity to grow.</p>
+          <a href="#contact" aria-label="Contact me">
+            Let's connect <ArrowUpRight size={15} />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

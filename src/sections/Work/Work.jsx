@@ -320,6 +320,9 @@ function Work() {
 
   return (
     <section className="work" id="work">
+        <div className="work-grid" aria-hidden="true" />
+  <div className="work-glow-one" aria-hidden="true" />
+  <div className="work-glow-two" aria-hidden="true" />
       <div className="work-container">
         <motion.div
           className="work-header"
