@@ -81,7 +81,7 @@ function Hero() {
         <div className="hero-topline">
           <span className="hero-topline-label">
             <span className="hero-status-dot" />
-            PERSONAL PORTFOLIO <span className="hero-slash">/</span> 2026
+           
           </span>
 
           <span className="hero-topline-right">
