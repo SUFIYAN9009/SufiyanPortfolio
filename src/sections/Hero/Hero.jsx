@@ -361,10 +361,7 @@ function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
       >
-        <span>SCROLL TO EXPLORE</span>
-        <span className="hero-scroll-icon">
-          <ArrowDown size={15} />
-        </span>
+       
       </motion.a>
     </section>
   );
