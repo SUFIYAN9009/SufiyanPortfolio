@@ -1281,13 +1281,19 @@
     letter-spacing: 0.5px;
   }
 
-  .hero-visual-label-left {
-    top: 70%;
-  }
+ .hero-visual-label-left {
+  position: absolute;
+  top: 68%;
+  left: -12%;
+  z-index: 5;
+}
 
-  .hero-visual-label-right {
-    bottom: 15%;
-  }
+.hero-visual-label-right {
+  position: absolute;
+  right: -12%;
+  bottom: 17%;
+  z-index: 5;
+}
 
   .hero-coordinate {
     font-size: 6px;

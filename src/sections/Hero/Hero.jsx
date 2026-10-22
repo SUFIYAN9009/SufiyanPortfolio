@@ -169,11 +169,8 @@ function Hero() {
             transition={{ duration: 1, delay: 0.15, ease: "easeOut" }}
           >
             <div className="hero-visual-topline">
-              <span>
-                <span className="hero-status-dot" />
-                DIGITAL IDENTITY
-              </span>
-              <span className="hero-visual-index">FIG. 001</span>
+             
+              
             </div>
 
             <div className="hero-stage">
@@ -273,29 +270,19 @@ function Hero() {
               <div className="hero-energy-spark spark-two" />
               <div className="hero-energy-spark spark-three" />
 
-              <div className="hero-visual-label hero-visual-label-left">
-                <span className="hero-label-dot" />
-                CREATIVE ENGINEERING
-              </div>
+             
 
-              <div className="hero-visual-label hero-visual-label-right">
-                <Zap size={13} />
-                BUILT TO CREATE
-              </div>
+             
 
-              <div className="hero-coordinate hero-coordinate-left">
-                33°N / 70°E
-              </div>
+             
 
-              <div className="hero-coordinate hero-coordinate-right">
-                FULL STACK / 001
-              </div>
+              
             </div>
 
             <div className="hero-visual-caption">
-              <span className="hero-caption-line" />
-              <span>DESIGN. DEVELOP. DELIVER.</span>
-              <span className="hero-caption-end">SA®</span>
+           
+              
+              
             </div>
           </motion.div>
         </div>
