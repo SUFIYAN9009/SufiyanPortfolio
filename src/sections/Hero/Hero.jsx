@@ -80,7 +80,7 @@ function Hero() {
       <div className="hero-container">
         <div className="hero-topline">
           <span className="hero-topline-label">
-            <span className="hero-status-dot" />
+          
            
           </span>
 
