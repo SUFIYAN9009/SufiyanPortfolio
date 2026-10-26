@@ -1,11 +1,6 @@
-
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowLeft,
-  ArrowRight,
-  ExternalLink,
-} from "lucide-react";
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import "./Work.css";
 
 const projects = [
@@ -18,13 +13,7 @@ const projects = [
     previewName: "ecommerce-shop",
     description:
       "A full-stack e-commerce application for browsing products, managing carts, placing orders, and handling products through an admin system.",
-    technologies: [
-      "Python",
-      "Django",
-      "React",
-      "JavaScript",
-      "REST API",
-    ],
+    technologies: ["Python", "Django", "React", "JavaScript", "REST API"],
     type: "01",
     status: "IN DEVELOPMENT",
     images: [
@@ -33,10 +22,7 @@ const projects = [
       { src: "/images/projects/ecommerce2.jpg", label: "STORY" },
       { src: "/images/projects/ecommerce3.jpg", label: "SIGN UP" },
       { src: "/images/projects/ecommerce4.jpg", label: "ADMIN PANEL" },
-      {
-        src: "/images/projects/ecommerce5.jpg",
-        label: "PRODUCT MANAGEMENT",
-      },
+      { src: "/images/projects/ecommerce5.jpg", label: "PRODUCT MANAGEMENT" },
       { src: "/images/projects/ecommerce6.jpg", label: "ADD PRODUCT" },
     ],
   },
@@ -49,12 +35,7 @@ const projects = [
     previewName: "alfa-lithium-batteries",
     description:
       "A responsive business website built for ALFA Lithium Batteries to present its brand, products, and services through a clean digital experience.",
-    technologies: [
-      "React",
-      "JavaScript",
-      "CSS3",
-      "Responsive UI",
-    ],
+    technologies: ["React", "JavaScript", "CSS3", "Responsive UI"],
     type: "02",
     status: "LIVE",
     liveUrl: "https://alfa-website-ecru.vercel.app",
@@ -67,7 +48,7 @@ const projects = [
   },
 ];
 
-const AUTO_SLIDE_DELAY = 5000;
+const AUTO_SLIDE_DELAY = 3000;
 
 function ProjectVisual({ project }) {
   const [currentImage, setCurrentImage] = useState(0);
@@ -75,9 +56,7 @@ function ProjectVisual({ project }) {
 
   const images = project.images || [];
   const activeImage = images[currentImage];
-  const imageError = activeImage
-    ? failedImages.includes(activeImage.src)
-    : false;
+  const imageError = activeImage ? failedImages.includes(activeImage.src) : false;
 
   useEffect(() => {
     setCurrentImage(0);
@@ -86,20 +65,12 @@ function ProjectVisual({ project }) {
 
   const nextImage = () => {
     if (!images.length) return;
-
     setCurrentImage((current) => (current + 1) % images.length);
   };
 
   const previousImage = () => {
     if (!images.length) return;
-
-    setCurrentImage(
-      (current) => (current - 1 + images.length) % images.length
-    );
-  };
-
-  const selectImage = (index) => {
-    setCurrentImage(index);
+    setCurrentImage((current) => (current - 1 + images.length) % images.length);
   };
 
   const handleImageError = (src) => {
@@ -149,7 +120,9 @@ function ProjectVisual({ project }) {
           {project.previewName || project.slug}
         </div>
 
-        <div className="browser-status">{project.status === "LIVE" ? "LIVE" : "PREVIEW"}</div>
+        <div className="browser-status">
+          {project.status === "LIVE" ? "LIVE" : "PREVIEW"}
+        </div>
       </div>
 
       <div className="browser-screen">
@@ -160,10 +133,10 @@ function ProjectVisual({ project }) {
               className="project-screenshot"
               src={activeImage.src}
               alt={`${project.title} ${activeImage.label} screenshot`}
-              initial={{ opacity: 0, x: 18, scale: 1.01 }}
+              initial={{ opacity: 0, x: 22, scale: 1.02 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -18 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              exit={{ opacity: 0, x: -22 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
               onError={() => handleImageError(activeImage.src)}
             />
           </AnimatePresence>
@@ -172,9 +145,7 @@ function ProjectVisual({ project }) {
             <span>
               {project.title} {project.titleAccent}
             </span>
-            <span>
-              {activeImage?.label || "SCREENSHOT"} PREVIEW UNAVAILABLE
-            </span>
+            <span>{activeImage?.label || "SCREENSHOT"} PREVIEW UNAVAILABLE</span>
             <span className="preview-fallback-hint">
               Check the image filename and public folder path.
             </span>
@@ -230,7 +201,7 @@ function ProjectVisual({ project }) {
                   ? "preview-thumbnail active"
                   : "preview-thumbnail"
               }
-              onClick={() => selectImage(index)}
+              onClick={() => setCurrentImage(index)}
               aria-label={`View ${image.label} screenshot`}
               aria-pressed={index === currentImage}
             >
@@ -250,33 +221,29 @@ function ProjectVisual({ project }) {
 }
 
 function Work() {
+  const total = projects.length;
   const [activeProject, setActiveProject] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(null);
 
   const project = projects[activeProject];
+  const nextProject = projects[(activeProject + 1) % total];
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    const updateMotionPreference = () => {
-      setReducedMotion(mediaQuery.matches);
-    };
+    const updateMotionPreference = () => setReducedMotion(mediaQuery.matches);
 
     updateMotionPreference();
     mediaQuery.addEventListener("change", updateMotionPreference);
 
-    return () => {
-      mediaQuery.removeEventListener("change", updateMotionPreference);
-    };
+    return () => mediaQuery.removeEventListener("change", updateMotionPreference);
   }, []);
 
   const showProject = (index) => {
-    const nextIndex = (index + projects.length) % projects.length;
-
+    const nextIndex = (index + total) % total;
     if (nextIndex === activeProject) return;
 
     setDirection(nextIndex > activeProject ? 1 : -1);
@@ -285,32 +252,47 @@ function Work() {
 
   const showPrevious = () => {
     setDirection(-1);
-    setActiveProject(
-      (current) => (current - 1 + projects.length) % projects.length
-    );
+    setActiveProject((current) => (current - 1 + total) % total);
   };
 
   const showNext = () => {
     setDirection(1);
-    setActiveProject((current) => (current + 1) % projects.length);
+    setActiveProject((current) => (current + 1) % total);
   };
 
+  // Auto-rotate every 3 seconds. The timer restarts whenever the project changes.
   useEffect(() => {
-    if (isPaused || reducedMotion || projects.length < 2) {
-      return undefined;
-    }
+    if (isPaused || reducedMotion || total < 2) return undefined;
 
-    const timer = window.setInterval(() => {
+    const timer = window.setTimeout(() => {
       setDirection(1);
-      setActiveProject(
-        (current) => (current + 1) % projects.length
-      );
+      setActiveProject((current) => (current + 1) % total);
     }, AUTO_SLIDE_DELAY);
 
-    return () => window.clearInterval(timer);
-  }, [isPaused, reducedMotion]);
+    return () => window.clearTimeout(timer);
+  }, [isPaused, reducedMotion, activeProject, total]);
 
-  const handleFocus = () => setIsPaused(true);
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowRight") showNext();
+    if (event.key === "ArrowLeft") showPrevious();
+  };
+
+  const handleTouchStart = (event) => {
+    setTouchStartX(event.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX === null) return;
+
+    const delta = event.changedTouches[0].clientX - touchStartX;
+
+    if (Math.abs(delta) > 50) {
+      if (delta < 0) showNext();
+      else showPrevious();
+    }
+
+    setTouchStartX(null);
+  };
 
   const handleBlur = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -319,10 +301,11 @@ function Work() {
   };
 
   return (
-    <section className="work" id="work">
-        <div className="work-grid" aria-hidden="true" />
-  <div className="work-glow-one" aria-hidden="true" />
-  <div className="work-glow-two" aria-hidden="true" />
+    <section className="work" id="work" onKeyDown={handleKeyDown}>
+      <div className="work-grid" aria-hidden="true" />
+      <div className="work-glow-one" aria-hidden="true" />
+      <div className="work-glow-two" aria-hidden="true" />
+
       <div className="work-container">
         <motion.div
           className="work-header"
@@ -341,8 +324,8 @@ function Work() {
           </div>
 
           <p>
-            A selection of real projects built with modern
-            technologies and practical solutions.
+            A selection of real projects built with modern technologies and
+            practical solutions.
           </p>
         </motion.div>
 
@@ -350,8 +333,10 @@ function Work() {
           className="projects"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          onFocusCapture={handleFocus}
+          onFocusCapture={() => setIsPaused(true)}
           onBlurCapture={handleBlur}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <AnimatePresence initial={false} mode="wait">
             <motion.article
@@ -360,22 +345,17 @@ function Work() {
               initial={
                 reducedMotion
                   ? { opacity: 1 }
-                  : { opacity: 0, x: direction * 100 }
+                  : { opacity: 0, x: direction * 90, scale: 0.98 }
               }
-              animate={{ opacity: 1, x: 0 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={
                 reducedMotion
                   ? { opacity: 0 }
-                  : { opacity: 0, x: direction * -100 }
+                  : { opacity: 0, x: direction * -90, scale: 0.98 }
               }
               transition={{
-                x: {
-                  duration: reducedMotion ? 0 : 0.55,
-                  ease: [0.22, 1, 0.36, 1],
-                },
-                opacity: {
-                  duration: reducedMotion ? 0 : 0.35,
-                },
+                duration: reducedMotion ? 0 : 0.6,
+                ease: [0.22, 1, 0.36, 1],
               }}
             >
               <div className="project-number">{project.number}</div>
@@ -386,9 +366,7 @@ function Work() {
 
               <div className="project-info">
                 <div className="project-meta">
-                  <span className="project-category">
-                    {project.category}
-                  </span>
+                  <span className="project-category">{project.category}</span>
 
                   <span
                     className={`project-status project-status-${project.status
@@ -432,17 +410,29 @@ function Work() {
         </div>
 
         <div className="project-carousel-controls">
+          {!reducedMotion && (
+            <span className="work-progress" aria-hidden="true">
+              <span
+                key={`${activeProject}-${isPaused}`}
+                className="work-progress-fill"
+                style={{
+                  animationDuration: `${AUTO_SLIDE_DELAY}ms`,
+                  animationPlayState: isPaused ? "paused" : "running",
+                }}
+              />
+            </span>
+          )}
+
           <div className="project-carousel-count" aria-live="polite">
             <span>{String(activeProject + 1).padStart(2, "0")}</span>
-            <span className="project-carousel-divider">/</span>
-            <span>{String(projects.length).padStart(2, "0")}</span>
+            <span className="project-carousel-divider" />
+            <span>{String(total).padStart(2, "0")}</span>
+            <span className="work-next">
+              Up next: <strong>{nextProject.title}</strong>
+            </span>
           </div>
 
-          <div
-            className="project-carousel-dots"
-            role="group"
-            aria-label="Choose a project"
-          >
+          <div className="project-carousel-dots" role="group" aria-label="Choose a project">
             {projects.map((item, index) => (
               <button
                 key={item.number}
@@ -460,19 +450,11 @@ function Work() {
           </div>
 
           <div className="project-carousel-arrows">
-            <button
-              type="button"
-              onClick={showPrevious}
-              aria-label="Previous project"
-            >
+            <button type="button" onClick={showPrevious} aria-label="Previous project">
               <ArrowLeft size={18} />
             </button>
 
-            <button
-              type="button"
-              onClick={showNext}
-              aria-label="Next project"
-            >
+            <button type="button" onClick={showNext} aria-label="Next project">
               <ArrowRight size={18} />
             </button>
           </div>
@@ -497,4 +479,3 @@ function Work() {
 }
 
 export default Work;
-

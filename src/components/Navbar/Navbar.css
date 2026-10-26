@@ -1,8 +1,7 @@
-
 /* =========================================
-   SUFIYAN — CINEMATIC FLOATING NAVBAR
+   SUFIYAN — ATTRACTIVE FLOATING NAVBAR
+   Palette and background: unchanged
 ========================================= */
-
 
 .navbar {
   position: fixed;
@@ -29,19 +28,17 @@
   left: 0;
   z-index: -1;
   height: 1px;
-  padding: 0;
-  border-radius: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(96, 165, 250, 0.65),
-    rgba(167, 139, 250, 0.55),
-    transparent
-  );
-  opacity: 0.8;
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.7), rgba(167, 139, 250, 0.6), transparent);
+  background-size: 200% 100%;
+  opacity: 0.85;
+  box-shadow: 0 0 14px rgba(96, 165, 250, 0.45);
   pointer-events: none;
+  animation: navbarLineFlow 6s linear infinite;
 }
 
+@keyframes navbarLineFlow {
+  to { background-position: 200% 0; }
+}
 
 .navbar-container {
   display: flex;
@@ -53,7 +50,10 @@
   margin: 0 auto;
 }
 
-/* LOGO */
+/* =========================================
+   LOGO
+========================================= */
+
 .navbar-logo {
   display: inline-flex;
   align-items: center;
@@ -65,14 +65,27 @@
   font-weight: 850;
   letter-spacing: -1.1px;
   text-decoration: none;
+  transition: transform 0.3s ease;
 }
 
 .navbar-logo span {
   color: #60a5fa;
   text-shadow: 0 0 18px rgba(96, 165, 250, 0.85);
+  transition: text-shadow 0.3s ease;
 }
 
-/* DESKTOP LINKS */
+.navbar-logo:hover {
+  transform: translateY(-1px);
+}
+
+.navbar-logo:hover span {
+  text-shadow: 0 0 26px rgba(96, 165, 250, 1);
+}
+
+/* =========================================
+   DESKTOP LINKS
+========================================= */
+
 .desktop-nav {
   display: flex;
   align-items: center;
@@ -81,6 +94,7 @@
   border: 1px solid rgba(148, 163, 184, 0.08);
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(10px);
 }
 
 .desktop-nav a {
@@ -94,24 +108,66 @@
   font-size: 12px;
   font-weight: 550;
   text-decoration: none;
-  transition:
-    color 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
+  isolation: isolate;
+  transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Underline that draws in on hover */
+
+.desktop-nav a::after {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  border-radius: 10px;
+  content: "";
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.6);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
 }
 
 .desktop-nav a:hover,
 .desktop-nav a:focus-visible {
   color: #f8fafc;
-  background: linear-gradient(
-    135deg,
-    rgba(59, 130, 246, 0.16),
-    rgba(139, 92, 246, 0.12)
-  );
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(139, 92, 246, 0.12));
   box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.13);
 }
 
-/* RIGHT SIDE */
+.desktop-nav a:hover::after,
+.desktop-nav a:focus-visible::after {
+  width: 40%;
+}
+
+/* Active link */
+
+.desktop-nav a.active {
+  color: #f8fafc;
+  background: rgba(59, 130, 246, 0.09);
+}
+
+.desktop-nav a.active::after {
+  width: 40%;
+}
+
+/* Explicit indicator element, if used in JSX */
+
+.nav-active-indicator {
+  position: absolute;
+  right: 15px;
+  bottom: 3px;
+  left: 15px;
+  height: 2px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.6);
+}
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
 .navbar-right {
   display: flex;
   align-items: center;
@@ -119,19 +175,27 @@
   gap: 13px;
 }
 
-/* AVAILABILITY PILL */
+/* Availability pill */
+
 .availability {
   display: inline-flex;
   align-items: center;
   gap: 9px;
   padding: 10px 12px;
-  border: 1px solid rgba(52, 211, 153, 0.13);
+  border: 1px solid rgba(52, 211, 153, 0.18);
   border-radius: 12px;
-  background: rgba(16, 185, 129, 0.055);
+  background: rgba(16, 185, 129, 0.06);
   color: #cbd5e1;
   font-size: 10px;
   font-weight: 500;
   white-space: nowrap;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.availability:hover {
+  border-color: rgba(52, 211, 153, 0.4);
+  background: rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.12);
 }
 
 .availability-dot {
@@ -154,18 +218,12 @@
 }
 
 @keyframes navbar-pulse {
-  0% {
-    transform: scale(0.7);
-    opacity: 0.9;
-  }
-
-  100% {
-    transform: scale(1.9);
-    opacity: 0;
-  }
+  0% { transform: scale(0.7); opacity: 0.9; }
+  100% { transform: scale(1.9); opacity: 0; }
 }
 
-/* GRADIENT CTA */
+/* Gradient CTA with light sweep */
+
 .navbar-cta {
   position: relative;
   display: inline-flex;
@@ -177,18 +235,14 @@
   border: 1px solid rgba(147, 197, 253, 0.5);
   border-radius: 13px;
   background: linear-gradient(110deg, #2563eb, #6366f1 55%, #7c3aed);
+  background-size: 200% 100%;
   color: #fff;
   font-size: 12px;
   font-weight: 650;
   text-decoration: none;
   white-space: nowrap;
-  box-shadow:
-    0 5px 22px rgba(59, 130, 246, 0.23),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
+  box-shadow: 0 5px 22px rgba(59, 130, 246, 0.23), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
 
 .navbar-cta::before {
@@ -199,16 +253,14 @@
   width: 35%;
   height: 260%;
   transform: rotate(25deg);
-  background: rgba(255, 255, 255, 0.2);
-  transition: left 0.5s ease;
+  background: rgba(255, 255, 255, 0.22);
+  transition: left 0.6s ease;
 }
 
 .navbar-cta:hover {
   transform: translateY(-2px);
   filter: brightness(1.12);
-  box-shadow:
-    0 8px 30px rgba(59, 130, 246, 0.35),
-    0 0 22px rgba(139, 92, 246, 0.16);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35), 0 0 22px rgba(139, 92, 246, 0.16);
 }
 
 .navbar-cta:hover::before {
@@ -224,7 +276,8 @@
   transform: translate(2px, -2px);
 }
 
-/* MOBILE MENU BUTTON */
+/* Mobile menu button */
+
 .mobile-menu-button {
   display: none;
   align-items: center;
@@ -236,19 +289,18 @@
   background: rgba(255, 255, 255, 0.04);
   color: #f8fafc;
   cursor: pointer;
-  transition:
-    border-color 0.25s ease,
-    background 0.25s ease,
-    transform 0.25s ease;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .mobile-menu-button:hover {
-  transform: scale(1.04);
+  transform: scale(1.05);
   border-color: rgba(96, 165, 250, 0.5);
   background: rgba(59, 130, 246, 0.12);
+  box-shadow: 0 0 18px rgba(96, 165, 250, 0.18);
 }
 
-/* MOBILE DROPDOWN */
+/* Mobile dropdown (hidden on desktop) */
+
 .mobile-nav {
   display: none;
 }
@@ -259,11 +311,14 @@
   outline-offset: 4px;
 }
 
-/* TABLETS */
+/* =========================================
+   TABLET
+========================================= */
+
 @media (max-width: 950px) {
   .navbar {
-    width: calc(100% - 36px);
-    top: 16px;
+    width: 100%;
+    padding: 12px 4%;
   }
 
   .navbar-container {
@@ -283,13 +338,15 @@
   }
 }
 
-/* MOBILE */
+/* =========================================
+   MOBILE
+========================================= */
+
 @media (max-width: 700px) {
   .navbar {
-    top: 12px;
-    width: calc(100% - 24px);
-    padding: 8px;
-    border-radius: 18px;
+    top: 0;
+    width: 100%;
+    padding: 10px 4%;
   }
 
   .navbar-logo {
@@ -318,11 +375,13 @@
     display: inline-flex;
   }
 
+  /* Dropdown slides and fades in */
+
   .mobile-nav {
     position: absolute;
     top: calc(100% + 10px);
-    right: 0;
-    left: 0;
+    right: 4%;
+    left: 4%;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -330,9 +389,15 @@
     border: 1px solid rgba(148, 163, 184, 0.17);
     border-radius: 19px;
     background: rgba(8, 13, 28, 0.97);
-    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.4), 0 0 30px rgba(59, 130, 246, 0.08);
     backdrop-filter: blur(26px);
     -webkit-backdrop-filter: blur(26px);
+    animation: navbarMenuIn 0.3s ease both;
+  }
+
+  @keyframes navbarMenuIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .mobile-nav > a {
@@ -346,31 +411,35 @@
     color: #cbd5e1;
     font-size: 13px;
     text-decoration: none;
-    transition:
-      color 0.2s ease,
-      border-color 0.2s ease,
-      background 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
   }
 
   .mobile-nav > a:hover {
     border-color: rgba(96, 165, 250, 0.15);
     background: rgba(59, 130, 246, 0.1);
     color: #fff;
+    transform: translateX(4px);
+  }
+
+  .mobile-nav > a.active {
+    border-color: rgba(96, 165, 250, 0.2);
+    background: rgba(59, 130, 246, 0.12);
+    color: #fff;
   }
 
   .mobile-nav > .mobile-cta {
     margin-top: 4px;
     border-color: rgba(96, 165, 250, 0.28);
-    background: linear-gradient(
-      110deg,
-      rgba(37, 99, 235, 0.22),
-      rgba(124, 58, 237, 0.16)
-    );
+    background: linear-gradient(110deg, rgba(37, 99, 235, 0.22), rgba(124, 58, 237, 0.16));
     color: #bfdbfe;
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.12);
   }
 }
 
-/* SMALL PHONES */
+/* =========================================
+   SMALL PHONES
+========================================= */
+
 @media (max-width: 360px) {
   .availability {
     gap: 7px;
@@ -383,76 +452,16 @@
   }
 }
 
-/* ACCESSIBILITY */
-@media (prefers-reduced-motion: reduce) {
-  .availability-dot::after {
-    animation: none;
-  }
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
+@media (prefers-reduced-motion: reduce) {
   .navbar *,
   .navbar *::before,
   .navbar *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
+    animation: none !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-/* ACTIVE NAVIGATION INDICATOR */
-.desktop-nav a {
-  position: relative;
-  isolation: isolate;
-}
-
-.desktop-nav a.active {
-  color: #f8fafc;
-  background: rgba(59, 130, 246, 0.09);
-}
-
-.nav-active-indicator {
-  position: absolute;
-  right: 15px;
-  bottom: 3px;
-  left: 15px;
-  height: 2px;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa);
-  box-shadow: 0 0 12px rgba(96, 165, 250, 0.6);
-}
-
-.mobile-nav > a.active {
-  border-color: rgba(96, 165, 250, 0.2);
-  background: rgba(59, 130, 246, 0.12);
-  color: #fff;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav-active-indicator {
-    box-shadow: none;
-  }
-}
-
-/* FULL-WIDTH NAVBAR ON EVERY SCREEN */
-.navbar {
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  max-width: none !important;
-  border-radius: 0 !important;
-  transform: none !important;
-}
-
-@media (max-width: 950px) {
-  .navbar {
-    width: 100% !important;
-    padding: 12px 4%;
-  }
-}
-
-@media (max-width: 700px) {
-  .navbar {
-    top: 0 !important;
-    width: 100% !important;
-    padding: 10px 4%;
+    scroll-behavior: auto !important;
   }
 }

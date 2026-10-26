@@ -1,7 +1,6 @@
-
 /* =========================================
-   SUFIYAN ALI — PREMIUM HERO-MATCHED FOOTER
-   Navy • Electric Blue • Purple • Grid Blocks
+   SUFIYAN ALI — ATTRACTIVE FOOTER
+   Palette and background: unchanged (navy / electric blue / purple)
 ========================================= */
 
 .footer {
@@ -19,16 +18,8 @@
   padding: 76px 8% 0;
   color: var(--footer-text);
   background:
-    radial-gradient(
-      ellipse at 78% 24%,
-      rgba(37, 99, 235, 0.16),
-      transparent 35%
-    ),
-    radial-gradient(
-      ellipse at 52% 75%,
-      rgba(91, 33, 182, 0.09),
-      transparent 42%
-    ),
+    radial-gradient(ellipse at 78% 24%, rgba(37, 99, 235, 0.16), transparent 35%),
+    radial-gradient(ellipse at 52% 75%, rgba(91, 33, 182, 0.09), transparent 42%),
     var(--footer-bg);
   border-top: 1px solid var(--footer-border);
 }
@@ -38,7 +29,7 @@
   box-sizing: border-box;
 }
 
-/* Subtle grid — matches the hero */
+/* Grid texture, fading at top and bottom */
 
 .footer::before {
   content: "";
@@ -47,33 +38,19 @@
   z-index: -1;
   pointer-events: none;
   background-image:
-    linear-gradient(
-      rgba(100, 149, 237, 0.045) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(100, 149, 237, 0.045) 1px,
-      transparent 1px
-    );
+    linear-gradient(rgba(100, 149, 237, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 149, 237, 0.045) 1px, transparent 1px);
   background-size: 55px 55px;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 15%,
-    black 80%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 15%,
-    black 80%,
-    transparent
-  );
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 80%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 80%, transparent);
+  animation: footerGridDrift 40s linear infinite;
 }
 
-/* Soft accent line */
+@keyframes footerGridDrift {
+  to { background-position: 55px 55px; }
+}
+
+/* Animated accent line across the top edge */
 
 .footer::after {
   content: "";
@@ -83,14 +60,15 @@
   width: 76%;
   height: 1px;
   pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--footer-blue),
-    var(--footer-purple),
-    transparent
-  );
-  opacity: 0.65;
+  background: linear-gradient(90deg, transparent, var(--footer-blue), var(--footer-purple), transparent);
+  background-size: 200% 100%;
+  opacity: 0.75;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
+  animation: footerLineFlow 6s linear infinite;
+}
+
+@keyframes footerLineFlow {
+  to { background-position: 200% 0; }
 }
 
 .footer-container {
@@ -124,15 +102,17 @@
   font-weight: 800;
   letter-spacing: -1.7px;
   text-decoration: none;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
 .footer-logo span {
   color: var(--footer-blue);
+  text-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
 }
 
 .footer-logo:hover {
   color: #bae6fd;
+  text-shadow: 0 0 22px rgba(186, 230, 253, 0.35);
 }
 
 .footer-brand p {
@@ -144,7 +124,7 @@
   line-height: 1.9;
 }
 
-/* Social links — glass blocks */
+/* Social links: glass blocks with a sheen on hover */
 
 .footer-socials {
   display: flex;
@@ -154,10 +134,12 @@
 }
 
 .footer-socials a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 7px;
   padding: 10px 13px;
+  overflow: hidden;
   border: 1px solid var(--footer-border);
   border-radius: 9px;
   background: rgba(12, 22, 42, 0.55);
@@ -166,25 +148,44 @@
   font-size: 12px;
   font-weight: 600;
   text-decoration: none;
-  transition:
-    color 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease,
-    transform 0.25s ease;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.footer-socials a::before {
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.footer-socials a:hover::before {
+  left: 130%;
 }
 
 .footer-socials a svg {
   color: var(--footer-blue);
+  transition: transform 0.25s ease;
 }
 
 .footer-socials a:hover {
   transform: translateY(-3px);
-  border-color: rgba(56, 189, 248, 0.45);
-  background: rgba(37, 99, 235, 0.12);
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(37, 99, 235, 0.14);
   color: var(--footer-text);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2), 0 0 18px rgba(56, 189, 248, 0.12);
 }
 
-/* Availability indicator, if used in JSX */
+.footer-socials a:hover svg {
+  transform: scale(1.12) rotate(-6deg);
+}
+
+/* Availability indicator */
 
 .footer-availability {
   display: flex;
@@ -199,6 +200,7 @@
 }
 
 .footer-availability-dot {
+  position: relative;
   width: 7px;
   height: 7px;
   flex-shrink: 0;
@@ -207,21 +209,56 @@
   box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
 }
 
-/* Contact column */
+.footer-availability-dot::after {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(56, 189, 248, 0.6);
+  content: "";
+  animation: footerPing 2.2s ease-out infinite;
+}
+
+@keyframes footerPing {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Contact card */
 
 .footer-contact {
+  position: relative;
   min-width: 0;
   padding: 25px;
   border: 1px solid var(--footer-border);
   border-radius: 16px;
-  background: linear-gradient(
-    145deg,
-    rgba(12, 22, 42, 0.72),
-    rgba(8, 14, 29, 0.58)
-  );
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(145deg, rgba(12, 22, 42, 0.72), rgba(8, 14, 29, 0.58));
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Gradient edge that lights up on hover */
+
+.footer-contact::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: 17px;
+  content: "";
+  background: linear-gradient(135deg, var(--footer-blue), var(--footer-purple), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.footer-contact:hover {
+  border-color: transparent;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), 0 0 30px rgba(56, 189, 248, 0.12);
+  transform: translateY(-3px);
+}
+
+.footer-contact:hover::before {
+  opacity: 0.35;
 }
 
 .footer-label,
@@ -240,11 +277,9 @@
 .footer-heading-line {
   width: 55px;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    var(--footer-blue),
-    transparent
-  );
+  background: linear-gradient(90deg, var(--footer-blue), var(--footer-purple), transparent);
+  background-size: 200% 100%;
+  animation: footerLineFlow 4s linear infinite;
 }
 
 /* Email */
@@ -261,19 +296,18 @@
   line-height: 1.7;
   text-decoration: none;
   overflow-wrap: anywhere;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
 .footer-email svg {
   flex-shrink: 0;
   color: var(--footer-blue);
-  transition:
-    transform 0.25s ease,
-    color 0.25s ease;
+  transition: transform 0.25s ease, color 0.25s ease;
 }
 
 .footer-email:hover {
   color: var(--footer-blue);
+  text-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
 }
 
 .footer-email:hover svg {
@@ -281,7 +315,7 @@
   color: #c4b5fd;
 }
 
-/* Divider under contact */
+/* Divider inside the contact card */
 
 .footer-contact::after {
   content: "";
@@ -289,11 +323,7 @@
   width: 100%;
   height: 1px;
   margin: 25px 0;
-  background: linear-gradient(
-    90deg,
-    var(--footer-border),
-    transparent
-  );
+  background: linear-gradient(90deg, var(--footer-border), transparent);
 }
 
 .footer-contact .footer-socials {
@@ -323,7 +353,7 @@
   text-align: center;
 }
 
-/* Back to top */
+/* Back to top: pulsing icon */
 
 .footer-top-button {
   display: inline-flex;
@@ -347,12 +377,16 @@
   padding: 9px;
   border: 1px solid rgba(56, 189, 248, 0.3);
   border-radius: 10px;
-  background: rgba(37, 99, 235, 0.10);
+  background: rgba(37, 99, 235, 0.1);
   color: var(--footer-blue);
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    border-color 0.25s ease;
+  box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.35);
+  animation: footerTopPulse 3s ease-in-out infinite;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+@keyframes footerTopPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.35); }
+  50% { box-shadow: 0 0 0 7px rgba(56, 189, 248, 0); }
 }
 
 .footer-top-button:hover {
@@ -477,7 +511,7 @@
   }
 }
 
-/* Reduced motion accessibility */
+/* Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
   .footer *,
