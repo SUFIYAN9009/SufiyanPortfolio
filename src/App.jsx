@@ -11,6 +11,7 @@ import Skills from "./sections/Skills/Skills";
 import Experience from "./sections/Experience/Experience";
 import Work from "./sections/Work/Work";
 import Contact from "./sections/Contact/Contact";
+import AIChat from "./components/AIChat/AIChat";
 
 import "./App.css";
 
@@ -23,6 +24,7 @@ function HomePage() {
       <Experience />
       <Work />
       <Contact />
+       <AIChat />
     </>
   );
 }
